@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="de">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>TPGuides | Search</title>
+    <link rel="icon" href="../img/Logo-32x32.ico" sizes="any">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+          crossorigin="anonymous">
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous">
+</script>
+
+
+<div class="topnav d-flex justify-content-between align-items-center px-3">
+    <div class="logo d-flex align-items-center">
+        <a href="index.html">
+            <img src="../img/Logo-487x487.png" alt="Logo" width="72.2" height="72.2">
+        </a>
+        <a href="index.html" style="text-decoration: none;">
+            <img src="../img/Logo-Schrifft.png" alt="LogoSchrift" width="274.6" height="67.5">
+        </a>
+    </div>
+
+    <div class="search-bar d-flex align-items-center">
+        <div class="dropdown">
+            <button type="button" class="dropdown-button" id="dropdownButton">
+                Select a Game
+            </button>
+            <div class="dropdown-content" id="dropdownContent">
+                <div class="dropdown-item" onclick="selectGame('League of Legends', '../img/lol.png')">
+                    <img src="../img/lol.png" alt="League of Legends"> League of Legends
+                </div>
+                <div class="dropdown-item"
+                     onclick="selectGame('Valorant', '../img/Valorant_logo_-_pink_color_version_(cropped).png')">
+                    <img src="../img/Valorant_logo_-_pink_color_version_(cropped).png" alt="Valorant"> Valorant
+                </div>
+                <div class="dropdown-item"
+                     onclick="selectGame('CounterStrike', '../img/Counter-Strike_CS_logo.svg.png')">
+                    <img src="../img/Counter-Strike_CS_logo.svg.png" alt="CounterStrike"> CounterStrike
+                </div>
+            </div>
+        </div>
+
+        <div class="tags-feature d-flex align-items-center me-3">
+            <input type="text" id="tagInput" class="form-control" placeholder="Add tags...">
+            <div id="tagDropdown" class="dropdown-content"></div>
+            <div id="selectedTags" class="d-flex flex-wrap"></div>
+        </div>
+
+        <form action="results.html" method="get" class="d-flex">
+            <input type="text" id="searchInput" class="search-input" placeholder="Search guides..."
+                   onkeyup="filterResults()"/>
+        </form>
+    </div>
+<div class="container-fluid">
+    <div class="row">
+
+
+        <div class="col-2" style="background-color: #208a77; min-height: 100vh;"></div>
+        <div class="col-8 d-flex justify-content-center align-items-center" style="height: 80vh;">
+            <div class>
+                <form id="writeForm">
+                    <div class="dropdown">
+                        <button type="button" class="dropdown-button" id="dropdownButto">
+                            Select a Game
+                        </button>
+                        <div class="dropdown-content" id="dropdownConten">
+                            <div class="dropdown-item" onclick="selectGame('League of Legends', '../img/lol.png')">
+                                <img src="../img/lol.png" alt="League of Legends"> League of Legends
+                            </div>
+                            <div class="dropdown-item"
+                                 onclick="selectGame('Valorant', '../img/Valorant_logo_-_pink_color_version_(cropped).png')">
+                                <img src="../img/Valorant_logo_-_pink_color_version_(cropped).png" alt="Valorant"> Valorant
+                            </div>
+                            <div class="dropdown-item"
+                                 onclick="selectGame('CounterStrike', '../img/Counter-Strike_CS_logo.svg.png')">
+                                <img src="../img/Counter-Strike_CS_logo.svg.png" alt="CounterStrike"> CounterStrike
+                            </div>
+                        </div>
+                    </div>
+
+                    <label for="title-input"
+                           style="font-size: 33px; margin-top: 40px; text-align: center; display: block;">Enter the
+                        Title:</label>
+                    <input type="text" id="title-input" name="title" class="form-control"
+                           style="width: 600px; margin: 20px auto; font-size: 20px;" placeholder="Type here...">
+
+                    <label for="guide-input"
+                           style="font-size: 33px; margin-top: 40px; text-align: center; display: block;">Write your
+                        Guide:</label>
+                    <textarea id="guide-input" name="guide" rows="8" class="form-control"
+                              style="width: 600px; margin: 20px auto; font-size: 20px;"
+                              placeholder="Write your guide here..."></textarea>
+
+                    <div style="text-align: center; margin-top: 40px;">
+                        <button type="submit" class="buttons">Save</button>
+                        <button type="submit" class="buttons">Publish</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="col-2" style="background-color: #208a77; min-height: 100vh;">
+            <a href="index.html">
+                <img src="../img/garbage_can.png" alt="Garbage" height="50" style="margin-bottom: 20px; cursor: pointer; position: absolute; bottom: 1px">
+            </a>
+        </div>
+    </div>
+</div>
+
+<script src="../JavaScript/dropdown.js" defer></script>
+<script src="../JavaScript/Search.js" defer></script>
+<script src="../JavaScript/Tags.js" defer></script>
+
+</body>
+</html>
