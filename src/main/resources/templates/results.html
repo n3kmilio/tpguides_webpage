@@ -19,7 +19,6 @@
         crossorigin="anonymous">
 </script>
 
-
 <div class="topnav d-flex justify-content-between align-items-center px-3">
     <div class="logo d-flex align-items-center">
         <a th:href="@{/}">
@@ -62,23 +61,22 @@
         </form>
 
     </div>
-        <div class="navigation-buttons d-flex align-items-center">
-            </form>
-            <form th:action="@{/login}" method="get" style="display: inline;">
-                <button id="loginButton" class="buttonslogin" type="submit">Login</button>
-            </form>
-        </div>
-
-
+    <div class="navigation-buttons d-flex align-items-center">
+        </form>
+        <form th:action="@{/login}" method="get" style="display: inline;">
+            <button id="loginButton" class="buttonslogin" type="submit">Login</button>
+        </form>
+    </div>
 </div>
+
 <div class="container-fluid">
     <div class="row">
         <div class="col-2 sidebar" style="background-color: #208a77; min-height: 100vh;">
             <a href="index.html">
                 <img src="../img/lol.png" class="center" alt="Game Logo" width="150" height="150">
             </a>
-            <div class=text-container> Draven, Botlane</div>
-            <div class=text-container> Draven Guide</div>
+            <div class="text-container"> Draven, Botlane</div>
+            <div class="text-container"> Draven Guide</div>
         </div>
 
         <div class="col-8 d-flex justify-content-center align-items-center" style="height: 80vh;">
@@ -86,29 +84,20 @@
                 <table class="table">
                     <thead>
                     <tr>
-                        <th class="h1">Results for your Search:</th>
+                        <th class="h1">Results for your Search: <span th:text="${searchTerm}"></span></th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td class="h3">Brias's feet | lildio</td>
-                    </tr>
-                    <tr>
-                        <td class="h3"><a href="guide.html">Draven Tutorial | GrafGrafowitz</a></td>
-                    </tr>
-                    <tr>
-                        <td class="h3">Kindred Tutorial | GrafGrafowitz</td>
-                    </tr>
-                    <tr>
-                        <td class="h3">Aram Quickguide | lildio</td>
-                    </tr>
-                    <tr>
-                        <td class="h3">TFT Guide for Starters | Skywalker</td>
+                    <!-- Dynamically populate the guides -->
+                    <tr th:each="guide : ${guides}">
+                        <td class="h3">
+                            <a th:href="@{guide.html(title=${guide.title})}" th:text="${guide.title}">Guide Title</a> |
+                            <span th:text="${guide.author}">Author</span>
+                        </td>
                     </tr>
                     </tbody>
                 </table>
             </form>
-
         </div>
 
         <div class="col-2 sidebar" style="background-color: #208a77; min-height: 100vh;"></div>
@@ -128,10 +117,8 @@
         if (savedLink) {
             loginButton.form.action = savedLink;
         }
-
     });
 </script>
-
 
 <script src="../JavaScript/dropdown.js" defer></script>
 <script src="../JavaScript/Search.js" defer></script>
@@ -139,4 +126,3 @@
 
 </body>
 </html>
-
