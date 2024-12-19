@@ -29,11 +29,5 @@ public class User {
         this.roles = roles;
     }
 
-    public boolean isEmpty() {
-        if (this.roles == null || this.roles.isEmpty()) {
-        return this.username.isEmpty();}
-        else return false;
-    }
-
     // Getter und Setter
 }

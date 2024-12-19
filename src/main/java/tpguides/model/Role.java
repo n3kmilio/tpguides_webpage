@@ -17,19 +17,5 @@ public class Role {
     public Role(String name) {
         this.name = name;
     }
-
-    public boolean isEmpty() {
-        if (this.name.isEmpty()) return this.name.isEmpty();
-
-        else return false;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
 // Getter und Setter...
 }
