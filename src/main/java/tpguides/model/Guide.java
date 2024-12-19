@@ -2,27 +2,61 @@ package tpguides.model;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 public class Guide {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String game;
+
     private String title;
+    private String description;
+    private String game;
 
-    @Lob
-    private String content;
+    @ElementCollection
+    private List<String> tags = new ArrayList<>();
 
-
-    public Guide() {}
-
-    public Guide(String title, String content, String game) {
-        this.title = title;
-        this.content = content;
-        this.game = game;
-
+    public String getGame() {
+        return game;
     }
 
-    // Getter und Setter
+    public void setGame(String game) {
+        this.game = game;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public List<String> getTags() {
+        return tags;
+    }
+
+    public void setTags(List<String> tags) {
+        this.tags = tags;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+// Getter und Setter
 }

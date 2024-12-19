@@ -1,15 +1,35 @@
-const guidesData = [
-    { title: "Draven Tutorial", description: "How to master Draven in League of Legends", game: "League of Legends", tags: ["ADC", "Draven", "Mechanics", "Overon"] },
-    { title: "Briars Feet", description: "A detailed Guide about Briars Feet", game: "League of Legends", tags: ["Champion lore", "Briar", "lildio"] },
-    { title: "Jett Guide", description: "Complete guide to Jett in Valorant", game: "Valorant", tags: ["Agent", "Jett", "Gameplay"] },
-    { title: "Counter-Strike 2 Strategies", description: "Top strategies for Counter-Strike 2", game: "Counter-Strike", tags: ["Strategy", "CS2", "Tactics", "GrafGrafowitz"] },
-    { title: "Inferno Smokes", description: "Effective smokes in CS:GO's Inferno map", game: "Counter-Strike", tags: ["Smokes", "Inferno", "CSGO", "Skywalker"] },
-    { title: "Breeze Smokes", description: "Smokes for Breeze in Valorant", game: "Valorant", tags: ["Smokes", "Breeze", "Utility"] }
-];
-
-
-
 let selectedTags = [];
+let guidesData = [];
+
+// Fetch die Guides vom Backend
+async function fetchGuides() {
+    try {
+        const response = await fetch('/api/guides');
+        if (response.ok) {
+            guidesData = await response.json();
+            filterResults();  // Filter die Ergebnisse direkt nach dem Laden
+        } else {
+            console.error('Fehler beim Abrufen der Guides');
+        }
+    } catch (error) {
+        console.error('Fehler beim Abrufen der Guides:', error);
+    }
+}
+
+// Aufruf der API, um nach Guides zu suchen
+async function searchGuides(searchTerm) {
+    try {
+        const response = await fetch(`/api/guides/search?searchTerm=${searchTerm}`);
+        if (response.ok) {
+            guidesData = await response.json();
+            filterResults();
+        } else {
+            console.error('Fehler beim Abrufen der Suchergebnisse');
+        }
+    } catch (error) {
+        console.error('Fehler beim Abrufen der Suchergebnisse:', error);
+    }
+}
 
 function addTag(tag) {
     if (!selectedTags.includes(tag)) {
@@ -63,6 +83,12 @@ function filterResults() {
     }
 }
 
+// Beim Laden der Seite Guides abrufen
+document.addEventListener('DOMContentLoaded', () => {
+    fetchGuides();
+});
 
-
-
+// Wenn der Benutzer nach Guides sucht, den Suchbegriff verwenden
+document.getElementById('searchInput').addEventListener('input', (event) => {
+    searchGuides(event.target.value);
+});
