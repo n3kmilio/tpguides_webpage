@@ -4,11 +4,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.beans.factory.annotation.Autowired;
-import sun.security.krb5.internal.ccache.MemoryCredentialsCache;
-import tpguides.model.Guide;
 import tpguides.model.Role;
 import tpguides.model.User;
-import tpguides.repository.GuideRepository;
 import tpguides.repository.UserRepository;
 import tpguides.repository.RoleRepository;
 
