@@ -1,57 +1,159 @@
-<!DOCTYPE html>
-<html lang="de" xmlns:th="http://www.thymeleaf.org">
+<!doctype html>
+<html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TPGuides | Guide Details</title>
-    <link rel="icon" th:href="@{/img/Logo-32x32.ico}" sizes="any">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>TPGuides | Guide</title>
+    <link rel="icon" href="../img/Logo-32x32.ico" sizes="any">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
           rel="stylesheet"
           integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
           crossorigin="anonymous">
-    <link th:href="@{/style.css}" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <script src="../JavaScript/header.js"></script>
 </head>
+
 <body>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous">
+</script>
+
 <div class="topnav d-flex justify-content-between align-items-center px-3">
     <div class="logo d-flex align-items-center">
-        <a th:href="@{/}">
-            <img th:src="@{/img/Logo-487x487.png}" alt="Logo" width="72.2" height="72.2">
+        <a href="index.html">
+            <img src="../img/Logo-487x487.png" alt="Logo" width="72.2" height="72.2">
         </a>
-        <a th:href="@{/}" style="text-decoration: none;">
-            <img th:src="@{/img/Logo-Schrifft.png}" alt="LogoSchrift" width="274.6" height="67.5">
+        <a href="index.html" style="text-decoration: none;">
+            <img src="../img/Logo-Schrifft.png" alt="LogoSchrift" width="274.6" height="67.5">
         </a>
     </div>
+
+    <div class="search-bar d-flex align-items-center">
+        <div class="dropdown">
+            <button type="button" class="dropdown-button" id="dropdownButton">
+                <!-- Dynamischer Spielname -->
+                {{selectedGameName}}
+            </button>
+            <div class="dropdown-content" id="dropdownContent">
+                <div class="dropdown-item" onclick="selectGame('League of Legends', '../img/lol.png')">
+                    <img src="../img/lol.png" alt="League of Legends"> League of Legends
+                </div>
+                <div class="dropdown-item"
+                     onclick="selectGame('Valorant', '../img/Valorant_logo_-_pink_color_version_(cropped).png')">
+                    <img src="../img/Valorant_logo_-_pink_color_version_(cropped).png" alt="Valorant"> Valorant
+                </div>
+                <div class="dropdown-item"
+                     onclick="selectGame('CounterStrike', '../img/Counter-Strike_CS_logo.svg.png')">
+                    <img src="../img/Counter-Strike_CS_logo.svg.png" alt="CounterStrike"> CounterStrike
+                </div>
+            </div>
+        </div>
+
+        <form action="results.html" method="get" class="d-flex">
+            <input type="text" id="searchInput" class="search-input" placeholder="Search guides..."
+                   value="{{searchQuery}}"/> <!-- Dynamische Suche -->
+        </form>
+    </div>
+
     <div class="navigation-buttons d-flex align-items-center">
-        <form th:action="@{/login}" method="get" style="display: inline;">
-            <button id="loginButton" class="buttonslogin" type="submit">Login</button>
+        <!-- Dynamischer Login-Button -->
+        <form action="{{loginAction}}" method="get" style="display: inline;">
+            <button class="buttonslogin" type="submit">{{loginButtonText}}</button>
         </form>
     </div>
 </div>
 
-<div class="container mt-5">
+<div class="container-fluid">
     <div class="row">
-        <div class="col-12">
-            <h1 class="mb-4 text-center" th:text="${guide.title}"></h1>
-            <p class="text-muted text-center" th:text="${guide.game}"></p>
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Guide Details</h5>
-                    <p class="card-text" th:text="${guide.description}"></p>
-                    <h6>Tags:</h6>
+
+        <!-- Dynamisches Profil -->
+        <div class="col-2 " style="background-color: #208a77; min-height: 100vh; padding: 20px;">
+            <a href="myprofile.html" style="text-decoration: none;">
+                <img src="{{profilePicture}}" class="center" alt="Profile Picture" width="100" height="100">
+            </a>
+            <a href="myprofile.html" style="text-decoration: none;color: white">
+                <h3>{{profileName}}</h3>
+            </a>
+
+            <br>
+            <img src="{{rankingIcon}}" class="center" alt="Ranking Icon" width="100" height="100">
+        </div>
+
+        <div class="col-8">
+
+            <!-- Dynamischer Guide -->
+            <div class="guide-container">
+                <div class="game-info">
+                    <img src="{{gameIcon}}" alt="Game Logo" width="50" height="50">
+                </div>
+
+                <div class="guide-content">
+                    <h3>{{guideTitle}}</h3>
+                    <p><strong>Description:</strong> {{guideDescription}}</p>
+                    <h4>Guide Content:</h4>
+                    <p>{{guideContent}}</p>
                     <ul>
-                        <li th:each="tag : ${guide.tags}" th:text="${tag}"></li>
+                        <!-- Dynamische Schritte im Guide -->
+                        {{#each guideSteps}}
+                        <li>{{this}}</li>
+                        {{/each}}
                     </ul>
                 </div>
-            </div>
-            <div class="mt-4">
-                <a th:href="@{/results(searchTerm=${searchTerm})}" class="btn btn-secondary">Back to Search Results</a>
+
+                <div class="comment-section mt-5">
+                    <h4>Comments</h4>
+                    <div id="comments">
+                        <!-- Dynamische Kommentare -->
+                        {{#each comments}}
+                        <div class="comment">
+                            <p><strong>{{author}}:</strong> {{text}}</p>
+                        </div>
+                        {{/each}}
+                    </div>
+
+                    <h4>Leave a Comment:</h4>
+                    <form id="commentForm">
+                        <div class="form-group">
+                            <textarea id="commentText" class="form-control" rows="4" placeholder="Write your comment here..."
+                                      style="font-size: 16px;"></textarea>
+                        </div>
+                        <button type="submit" class="buttons" style="font-size: 16px; margin-top: 10px;">Post Comment</button>
+                    </form>
+                </div>
+
             </div>
         </div>
+
+        <div class="col-2" style="background-color: #208a77; min-height: 100vh;"></div>
+
     </div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-        crossorigin="anonymous"></script>
+<script>
+    document.getElementById("commentForm").addEventListener("submit", function (event) {
+        event.preventDefault();
+        const commentText = document.getElementById("commentText").value;
+
+        if (commentText.trim() === "") {
+            alert("Please write something before posting a comment.");
+            return;
+        }
+
+        const commentSection = document.getElementById("comments");
+        const newComment = document.createElement("div");
+        newComment.classList.add("comment");
+        newComment.innerHTML = `<p><strong>You:</strong> ${commentText}</p>`;
+        commentSection.appendChild(newComment);
+
+        document.getElementById("commentText").value = "";
+    });
+</script>
+
+<script src="../JavaScript/dropdown.js" defer></script>
+<script src="../JavaScript/Search.js" defer></script>
+<script src="../JavaScript/Tags.js" defer></script>
+
 </body>
 </html>

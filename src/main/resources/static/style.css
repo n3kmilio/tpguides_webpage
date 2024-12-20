@@ -12,6 +12,87 @@
 
 }
 
+.guide-container {
+    max-width: 800px;
+    margin: 40px auto;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: 1px solid #208a77;
+}
+
+/* Titel-Styling */
+.guide-title {
+    font-family: Arial, sans-serif;
+    font-size: 32px;
+    font-weight: bold;
+    text-align: center;
+    color: #208a77;
+    margin-bottom: 10px;
+}
+
+/* Beschreibung */
+.guide-description {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: justify;
+}
+
+/* Spielinfo */
+.game-info {
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+    color: #208a77;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Buttons */
+.guide-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.guide-button {
+    background-color: #208a77;
+    color: white;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.guide-button:hover {
+    background-color: #186b5d;
+}
+
+/* Tags-Styling */
+.guide-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px;
+    justify-content: center;
+}
+
+.guide-tag {
+    background-color: #208a77;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-size: 12px;
+}
+
 @media (max-width: 800px) {
     .topnav {
       flex-direction: column;
