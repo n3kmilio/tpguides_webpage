@@ -1,33 +1,28 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="de" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TPGuides | Guide Details</title>
-    <link rel="icon" href="../img/Logo-32x32.ico" sizes="any">
+    <link rel="icon" th:href="@{/img/Logo-32x32.ico}" sizes="any">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
           rel="stylesheet"
           integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
           crossorigin="anonymous">
-    <link rel="stylesheet" href="../style.css">
+    <link th:href="@{/style.css}" rel="stylesheet">
 </head>
 <body>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-        crossorigin="anonymous"></script>
-
 <div class="topnav d-flex justify-content-between align-items-center px-3">
     <div class="logo d-flex align-items-center">
-        <a href="/">
-            <img src="../img/Logo-487x487.png" alt="Logo" width="72.2" height="72.2">
+        <a th:href="@{/}">
+            <img th:src="@{/img/Logo-487x487.png}" alt="Logo" width="72.2" height="72.2">
         </a>
-        <a href="/" style="text-decoration: none;">
-            <img src="../img/Logo-Schrifft.png" alt="LogoSchrift" width="274.6" height="67.5">
+        <a th:href="@{/}" style="text-decoration: none;">
+            <img th:src="@{/img/Logo-Schrifft.png}" alt="LogoSchrift" width="274.6" height="67.5">
         </a>
     </div>
     <div class="navigation-buttons d-flex align-items-center">
-        <form action="/login" method="get" style="display: inline;">
+        <form th:action="@{/login}" method="get" style="display: inline;">
             <button id="loginButton" class="buttonslogin" type="submit">Login</button>
         </form>
     </div>
@@ -36,12 +31,12 @@
 <div class="container mt-5">
     <div class="row">
         <div class="col-12">
-            <h1 class="mb-4 text-center">{{guide.title}}</h1>
-            <p class="text-muted text-center">{{guide.game}}</p>
+            <h1 class="mb-4 text-center" th:text="${guide.title}"></h1>
+            <p class="text-muted text-center" th:text="${guide.game}"></p>
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Guide Details</h5>
-                    <p class="card-text">{{guide.description}}</p>
+                    <p class="card-text" th:text="${guide.description}"></p>
                     <h6>Tags:</h6>
                     <ul>
                         <li th:each="tag : ${guide.tags}" th:text="${tag}"></li>
@@ -49,27 +44,14 @@
                 </div>
             </div>
             <div class="mt-4">
-                <a href="/results?searchTerm={{searchTerm}}" class="btn btn-secondary">Back to Search Results</a>
+                <a th:href="@{/results(searchTerm=${searchTerm})}" class="btn btn-secondary">Back to Search Results</a>
             </div>
         </div>
     </div>
 </div>
 
-<script>
-    window.addEventListener('load', function() {
-        const savedText = sessionStorage.getItem('buttonText');
-        const savedLink = sessionStorage.getItem('linkText');
-        const loginButton = document.getElementById('loginButton');
-
-        if (savedText) {
-            loginButton.textContent = savedText;
-        }
-
-        if (savedLink) {
-            loginButton.form.action = savedLink;
-        }
-    });
-</script>
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
 </body>
 </html>
