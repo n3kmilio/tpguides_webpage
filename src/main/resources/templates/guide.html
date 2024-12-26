@@ -90,15 +90,13 @@
                 </div>
 
                 <div class="guide-content">
-                    <h3>{{guideTitle}}</h3>
-                    <p><strong>Description:</strong> {{guideDescription}}</p>
+                    <h3><a th:href="@{guide.html(title=${guide.title})}" th:text="${guide.title}">Title</a></h3>
+                    <p><strong>Description:</strong> <span th:text="${guide.description}">Default Description</span></p>
                     <h4>Guide Content:</h4>
-                    <p>{{guideContent}}</p>
+                    <p th:text="${guide.content}">Default Content</p>
                     <ul>
-                        <!-- Dynamische Schritte im Guide -->
-                        {{#each guideSteps}}
-                        <li>{{this}}</li>
-                        {{/each}}
+
+                        <li th:each="step : ${guide.steps}" th:text="${step}">Default Step</li>
                     </ul>
                 </div>
 
