@@ -139,8 +139,8 @@ public class DataInitializer implements CommandLineRunner {
             Role adminRole = roleRepository.findByName("ADMIN");
             Role userRole = roleRepository.findByName("USER");
 
-            User admin = new User("admin", "admin123", "admin@admin.de",Set.of(adminRole, userRole));
-            User user = new User("user", "user123", "user@user.de",Set.of(userRole));
+            User admin = new User("admin", "admin123", "admin@admin.de", Set.of(adminRole, userRole));
+            User user = new User("user", "user123", "user@user.de", Set.of(userRole));
 
             userRepository.save(admin);
             userRepository.save(user);
