@@ -35,10 +35,12 @@ public class SecurityConfig {
                             "/guide/*..."
                     ).permitAll();
                     registry.requestMatchers("/api/guides", "/api/guides/search").permitAll();
+                    registry.requestMatchers("/myprofile/**").authenticated();
 
                     // Zugriff auf die H2-Konsole erlauben
                     registry.requestMatchers("/h2-console/**").permitAll();
                 })
+
                 .csrf(csrf -> csrf
                         .ignoringRequestMatchers("/h2-console/**") // CSRF für H2-Konsole deaktivieren
                         .ignoringRequestMatchers("/guide/{id}/**")
