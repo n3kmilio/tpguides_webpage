@@ -26,6 +26,7 @@ public class CustomUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Optional<User> user = Optional.ofNullable(userRepository.findByUsername(username));
         if (user.isEmpty()) {
+            System.out.println("Benutzer nicht gefunden: " + username);
             throw new UsernameNotFoundException("User not found");
         }
 
