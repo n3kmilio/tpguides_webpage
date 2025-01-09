@@ -13,10 +13,7 @@ public class WriteController {
     @Autowired
     private GuideRepository guideservice;
 
-    @GetMapping("/")
-    public String showForm() {
-        return "form";
-    }
+
     @PostMapping("/publish")
     public String writeSubmit (@RequestParam("content") String Content) {
         Guide guide = new Guide();
