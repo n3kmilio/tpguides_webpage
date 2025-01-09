@@ -135,16 +135,13 @@
     background-color: #186b5d;
 }
 
-.buttonslogin{
-    background-color: #208a77;
-    height: 37.1px;
-    width: 137px;
-    border-radius: 12px;
-
+.Boutonlogin button {
+    padding: 10px 20px;
+    background-color: #186b5d;
     color: white;
-
-    box-shadow: none;
-    border-color: transparent;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
 
