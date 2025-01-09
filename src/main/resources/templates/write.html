@@ -68,7 +68,6 @@
         <div class="col-2" style="background-color: #208a77; min-height: 100vh;"></div>
         <div class="col-8 d-flex justify-content-center align-items-center" style="height: 80vh;">
             <div class>
-                <form id="writeForm" action="#" th:action="@{/publsih}" th:object="${content}" method="post">
                     <div class="dropdown">
                         <button type="button" class="dropdown-button" id="dropdownButto">
                             Select a Game
@@ -97,14 +96,15 @@
                     <label for="guide-input"
                            style="font-size: 33px; margin-top: 40px; text-align: center; display: block;">Write your
                         Guide:</label>
+                    <form action="/submit" method="POST">
                     <textarea id="guide-input" name="guide" rows="8" class="form-control"
                               style="width: 600px; margin: 20px auto; font-size: 20px;"
                               placeholder="Write your guide here..."></textarea>
 
                     <div style="text-align: center; margin-top: 40px;">
                         <button id="publsih" type="submit" class="buttons">Publish</button>
+                    </form>
                     </div>
-                </form>
             </div>
         </div>
 
