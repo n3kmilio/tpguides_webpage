@@ -34,7 +34,6 @@ public class HomeController {
             User user = (User) principal;
             model.addAttribute("username", user.getUsername());
         } else {
-            // Handle other types or fallback if necessary
             model.addAttribute("username", "Guest");
         }
 
