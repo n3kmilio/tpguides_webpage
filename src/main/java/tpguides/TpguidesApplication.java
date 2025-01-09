@@ -27,29 +27,6 @@ public class TpguidesApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		// Rollen erstellen
-		Role adminRole = new Role("ADMIN");
-		Role userRole = new Role("USER");
 
-		// Rollen in die DB speichern
-		roleRepository.save(adminRole);
-		roleRepository.save(userRole);
-
-		// Benutzer erstellen
-		Set<Role> adminRoles = new HashSet<>();
-		adminRoles.add(adminRole);
-		adminRoles.add(userRole);
-
-		Set<Role> userRoles = new HashSet<>();
-		userRoles.add(userRole);
-
-		User adminUser = new User("admin", "admin123","admin@admin.de",adminRoles);
-		User regularUser = new User("user", "user123","user@user.de", userRoles);
-
-		// Benutzer in die DB speichern
-		userRepository.save(adminUser);
-		userRepository.save(regularUser);
-
-		System.out.println("Daten wurden erfolgreich in die Datenbank eingefügt!");
 	}
 }
