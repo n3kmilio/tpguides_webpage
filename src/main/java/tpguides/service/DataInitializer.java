@@ -1,6 +1,8 @@
 package tpguides.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import tpguides.model.Guide;
 import tpguides.model.Role;
@@ -24,6 +26,10 @@ public class DataInitializer implements CommandLineRunner {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
     }
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
 
     @Override
     public void run(String... args) throws Exception {
@@ -139,8 +145,8 @@ public class DataInitializer implements CommandLineRunner {
             Role adminRole = roleRepository.findByName("ADMIN");
             Role userRole = roleRepository.findByName("USER");
 
-            User admin = new User("admin", "admin123", Set.of(adminRole, userRole));
-            User user = new User("user", "user123", Set.of(userRole));
+            User admin = new User("admin", passwordEncoder.encode("admin123"), "admin@admin.de", Set.of(adminRole, userRole));
+            User user = new User("user", passwordEncoder.encode("user123"), "user@user.de", Set.of(userRole));
 
             userRepository.save(admin);
             userRepository.save(user);
