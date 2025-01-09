@@ -45,4 +45,5 @@ public class HomeContoller {
     public String write() {
         return "write";
     }
+
 }

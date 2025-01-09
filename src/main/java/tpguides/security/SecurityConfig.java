@@ -12,16 +12,31 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        //noinspection removal
         return http
                 .formLogin(httpForm ->{
                     httpForm.loginPage("/login").permitAll();
                 })
-
                 .authorizeHttpRequests(registry ->{
-                    registry.requestMatchers("/register","/style.css","/Javascript/**","/img/**").permitAll();
-                    registry.anyRequest().authenticated();
-                })
+                    registry.requestMatchers("/register",
+                            "/style.css",
+                            "/Javascript/**",
+                            "/img/**",
+                            "/",
+                            "/link",
+                            "/results",
+                            "/guide/*..."
+                    ).permitAll();
+                    registry.requestMatchers("/api/guides", "/api/guides/search").permitAll();
 
+                    // Zugriff auf die H2-Konsole erlauben
+                    registry.requestMatchers("/h2-console/**").permitAll();
+                })
+                .csrf(csrf -> csrf
+                        .ignoringRequestMatchers("/h2-console/**") // CSRF für H2-Konsole deaktivieren
+                        .ignoringRequestMatchers("/guide/{id}/**")
+                )
+                .headers(headers -> headers.frameOptions().sameOrigin()) // Erlaube das Einbetten der Konsole in Iframes
                 .build();
     }
 }
