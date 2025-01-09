@@ -117,7 +117,7 @@
 
 .navigation-buttons .buttons,
 .navigation-buttons .buttonslogin {
-    padding: 8px 15px;
+    padding: 8px 80px;
     font-size: 14px;
     border-radius: 8px;
     border: none;
@@ -136,7 +136,7 @@
 }
 
 .Boutonlogin button {
-    padding: 10px 20px;
+    padding: 10px 100px;
     background-color: #186b5d;
     color: white;
     border: none;
