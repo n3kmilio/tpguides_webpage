@@ -77,15 +77,12 @@
 
         <div class="col-8 d-flex justify-content-center align-items-center" style="height: 80vh;">
             <div class="login-container">
-                <form>
-                    <label for="email" class="p1">Email:</label>
-                    <input type="email" id="email" class="form-control mb-3" placeholder="Enter your email">
-
-                    <label for="password" class="p1">Password:</label>
-                    <input type="password" id="password" class="form-control mb-3" placeholder="Enter your password">
-
-                    <button id="loginForm" type="submit" class="buttons w-100">Login</button>
-
+                <form id="loginForm" action="/login" method="post">
+                    <label for="username">Email:</label>
+                    <input type="text" id="username" name="username" required>
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required>
+                    <button type="submit">Login</button>
                 </form>
                 <p class="p2 mt-3">
                     No Account? <a th:href="@{/register}" style="text-decoration: underline;">Register Here</a>
@@ -98,16 +95,12 @@
         </div>
     </div>
 </div>
-<!--
-<div id="searchOverlay" class="search-overlay">
-    <div class="search-results-container">
-        <div id="searchResults" class="search-results"></div>
-        <button id="closeButton" class="close-button">Close</button>
-    </div>
-</div>
--->
 
 <script>
+
+    document.getElementById('loginForm').action = '/login';
+  // Falls keine Änderung an URL notwendig ist
+
 
     window.addEventListener('load', function() {
         const savedText = sessionStorage.getItem('buttonText');
@@ -122,19 +115,6 @@
             loginButton.form.action = savedLink;
         }
 
-    });
-
-
-    document.getElementById('loginForm').addEventListener('click', function() {
-        event.preventDefault();
-        const newText = "My Profile"; // Der neue Text
-        const newLink = "/myprofile";
-        document.getElementById('loginButton').textContent = newText; // Text des Buttons ändern
-        document.getElementById('loginButton').form.action = newLink;
-
-
-        sessionStorage.setItem('buttonText', newText);
-        sessionStorage.setItem('linkText',newLink);
     });
 </script>
 
