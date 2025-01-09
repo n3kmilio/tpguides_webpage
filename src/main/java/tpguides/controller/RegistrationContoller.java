@@ -13,10 +13,10 @@ public class RegistrationContoller {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-   @Autowired
-   private UserRepository userRepository;
+    @Autowired
+    private UserRepository userRepository;
     @PostMapping(value = "/register", consumes = "application/json")
-    public User createUser(@RequestBody User user){
+    public User createUser(@RequestBody User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepository.save(user);
     }

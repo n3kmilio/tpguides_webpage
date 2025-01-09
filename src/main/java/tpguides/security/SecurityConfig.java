@@ -38,9 +38,8 @@ public class SecurityConfig {
                             "/write",
                             "/api/guides/**",
                             "/guide/**",
-                            "/guide/{id}"
+                            "/guide.html/**"
                     ).permitAll();
-                    registry.requestMatchers("/api/guides/**").permitAll();
 
                     registry.requestMatchers("/myprofile/**").authenticated();
                     // Zugriff auf die H2-Konsole erlauben
