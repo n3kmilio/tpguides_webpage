@@ -43,8 +43,8 @@ public class TpguidesApplication implements CommandLineRunner {
 		Set<Role> userRoles = new HashSet<>();
 		userRoles.add(userRole);
 
-		User adminUser = new User("admin", "admin123", adminRoles);
-		User regularUser = new User("user", "user123", userRoles);
+		User adminUser = new User("admin", "admin123","admin@admin.de",adminRoles);
+		User regularUser = new User("user", "user123","user@user.de", userRoles);
 
 		// Benutzer in die DB speichern
 		userRepository.save(adminUser);
