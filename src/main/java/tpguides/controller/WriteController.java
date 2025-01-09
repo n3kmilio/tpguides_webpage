@@ -14,10 +14,14 @@ public class WriteController {
     private GuideRepository guideservice;
 
 
-    @PostMapping("/publish")
-    public String writeSubmit (@RequestParam("content") String Content) {
+    @PostMapping("/submit")
+    public String writeSubmit (@RequestParam("guide-input") String Content,
+                               @RequestParam("title-input") String Title,
+                               @RequestParam("dropdownConten") String game) {
         Guide guide = new Guide();
         guide.setContent(Content);
+        guide.setTitle(Title);
+        guide.setGame(game);
         guideservice.save(guide);
         return "redirect:/";
     }
