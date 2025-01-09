@@ -95,18 +95,11 @@
         </div>
     </div>
 </div>
-<!--
-<div id="searchOverlay" class="search-overlay">
-    <div class="search-results-container">
-        <div id="searchResults" class="search-results"></div>
-        <button id="closeButton" class="close-button">Close</button>
-    </div>
-</div>
--->
 
 <script>
 
-    document.getElementById('loginButton').form.action = '/login';  // Falls keine Änderung an URL notwendig ist
+    document.getElementById('loginForm').action = '/login';
+  // Falls keine Änderung an URL notwendig ist
 
 
     window.addEventListener('load', function() {
@@ -123,7 +116,6 @@
         }
 
     });
-
 </script>
 
 <script src="../JavaScript/dropdown.js" defer></script>
