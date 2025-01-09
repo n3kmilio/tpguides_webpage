@@ -78,12 +78,18 @@
         <div class="col-8 d-flex justify-content-center align-items-center" style="height: 80vh;">
             <div class="login-container">
                 <form th:action="@{/login}" method="post">
-                    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
-                    <label for="username">Username:</label>
-                    <input type="text" id="username" name="username" required>
-                    <label for="password">Password:</label>
-                    <input type="password" id="password" name="password" required>
-                    <button type="submit">Login</button>
+                    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+
+                    <div class="row mb-4">
+                        <label for="username">Username:</label>
+                        <input type="text" id="username" name="username" required>
+                        <label for="password">Password:</label>
+                        <input type="password" id="password" name="password" required>
+                    </div>
+                    <div class="Boutonlogin"> <!-- Hier befindet sich der Login-Button -->
+                        <button id="loginForm" type="submit">Login</button>
+                    </div>
+
                 </form>
                 <p class="p2 mt-3">
                     No Account? <a th:href="@{/register}" style="text-decoration: underline;">Register Here</a>
@@ -108,7 +114,24 @@
             loginButton.textContent = savedText;
         }
 
+        if (savedLink) {
+            loginButton.form.action = savedLink;
+        }
+
     });
+
+
+    document.getElementById('loginForm').addEventListener('click', function() {
+        const newText = "My Profile"; // Der neue Text
+        const newLink = "/myprofile";
+        document.getElementById('loginButton').textContent = newText; // Text des Buttons ändern
+        document.getElementById('loginButton').form.action = newLink;
+
+
+        sessionStorage.setItem('buttonText', newText);
+        sessionStorage.setItem('linkText',newLink);
+    });
+
 </script>
 
 <script src="../JavaScript/dropdown.js" defer></script>

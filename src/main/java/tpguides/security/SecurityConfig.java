@@ -23,6 +23,8 @@ public class SecurityConfig {
         return http
                 .formLogin(httpForm -> {
                     httpForm.loginPage("/login").permitAll();
+                    httpForm.defaultSuccessUrl("/").permitAll();
+
                 })
                 .authorizeHttpRequests(registry -> {
                     registry.requestMatchers("/register",
@@ -32,18 +34,25 @@ public class SecurityConfig {
                             "/",
                             "/link",
                             "/results",
-                            "/guide/*...",
-                            "/write"
+                            "/guide",
+                            "/write",
+                            "/api/guides/**",
+                            "/guide/**",
+                            "/guide.html/**"
                     ).permitAll();
-                    registry.requestMatchers("/api/guides", "/api/guides/search").permitAll();
+
                     registry.requestMatchers("/myprofile/**").authenticated();
                     // Zugriff auf die H2-Konsole erlauben
                     registry.requestMatchers("/h2-console/**").permitAll();
                 })
                 .csrf(csrf -> csrf
-                        .ignoringRequestMatchers("/h2-console/**") // CSRF für H2-Konsole deaktivieren
-                        .ignoringRequestMatchers("/guide/{id}/**")
-                        .ignoringRequestMatchers("/register")
+                        .ignoringRequestMatchers(
+                                "/h2-console/**",
+                                "/register",
+                                "/api/guides/**",
+                                "/guide/**" // Falls POST/PUT/DELETE genutzt werden
+                        )
+
                 )
 
                 .headers(headers -> headers.frameOptions().sameOrigin()) // Erlaube das Einbetten der Konsole in Iframes
