@@ -68,7 +68,7 @@
         <div class="col-2" style="background-color: #208a77; min-height: 100vh;"></div>
         <div class="col-8 d-flex justify-content-center align-items-center" style="height: 80vh;">
             <div class>
-                <form id="writeForm">
+                <form id="writeForm" action="#" th:action="@{/publsih}" th:object="${content}" method="post">
                     <div class="dropdown">
                         <button type="button" class="dropdown-button" id="dropdownButto">
                             Select a Game
@@ -103,7 +103,7 @@
 
                     <div style="text-align: center; margin-top: 40px;">
                         <button type="submit" class="buttons">Save</button>
-                        <button type="submit" class="buttons">Publish</button>
+                        <button id="publsih" type="submit" class="buttons">Publish</button>
                     </div>
                 </form>
             </div>

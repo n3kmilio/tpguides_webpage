@@ -14,6 +14,8 @@ public class Guide {
 
     private String title;
     private String description;
+
+    private String content;
     private String game;
 
     @ElementCollection
@@ -38,6 +40,10 @@ public class Guide {
     public void setTitle(String title) {
         this.title = title;
     }
+
+    public String getcontent(){ return content; }
+
+    public void setContent(String content) { this.content = content; }
 
     public String getDescription() {
         return description;
