@@ -10,7 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import tpguides.model.Guide;
 import tpguides.repository.GuideRepository;
 import tpguides.repository.UserRepository;
-import tpguides.service.CustomUserDetailsService;;import java.util.Optional;
+import tpguides.service.CustomUserDetailsService;
+import java.util.Optional;
 
 @Controller
 public class HomeController {
