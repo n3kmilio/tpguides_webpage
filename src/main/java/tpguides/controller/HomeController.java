@@ -1,21 +1,23 @@
 package tpguides.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.neo4j.Neo4jProperties;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import tpguides.model.Guide;
+import tpguides.repository.GuideRepository;
 import tpguides.repository.UserRepository;
-import tpguides.service.CustomUserDetailsService;
-import java.util.Optional;
+import tpguides.service.CustomUserDetailsService;;import java.util.Optional;
 
 @Controller
 public class HomeController {
      @Autowired
      UserRepository userRepository;
+     @Autowired
+     GuideRepository guideRepository;
 
     @GetMapping("/")
     public String home(Model model) {
@@ -46,11 +48,12 @@ public class HomeController {
 
         if (principal instanceof User) {
             User user = (User) principal;
-
             Optional<tpguides.model.User> UserTP = userRepository.findByUsername(user.getUsername());
             String description = UserTP.get().getDescription();
+            Optional<Guide> guides = guideRepository.findById(2);
             model.addAttribute("username", user.getUsername());
             model.addAttribute("description",description);
+            model.addAttribute("Guides", guides);
         } else {
             model.addAttribute("username", "Guest");
         }
@@ -77,7 +80,5 @@ public class HomeController {
     public String write() {
         return "write";
     }
-
-
 
 }
