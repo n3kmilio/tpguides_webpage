@@ -1,15 +1,19 @@
 package tpguides.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+
 import org.springframework.web.bind.annotation.RestController;
+import tpguides.model.Role;
 import tpguides.model.User;
+import tpguides.repository.RoleRepository;
 import tpguides.repository.UserRepository;
+
+import java.util.Set;
+
 class UserAlreadyExistsException extends RuntimeException {
     public UserAlreadyExistsException(String message) {
         super(message);
@@ -23,15 +27,22 @@ public class RegistrationContoller {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private RoleRepository roleRepository;
+
     @PostMapping(value = "/register", consumes = "application/json")
-    public ResponseEntity<Void> createUser(@RequestBody User user) {
+    public User createUser(@RequestBody User user) {
         if (userRepository.findByEmail(user.getEmail()).isPresent()) {
             throw new UserAlreadyExistsException("Ein Benutzer mit dieser Email existiert bereits.");
         }
+        if (userRepository.findByUsername(user.getUsername()).isPresent()) {
+            throw new UserAlreadyExistsException("EIn Benutzer mit disem Username existiert bereits");
+        }
+        Role userRole = roleRepository.findByName("USER");
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        userRepository.save(user);
-        return ResponseEntity.status(HttpStatus.FOUND)
-                .header(HttpHeaders.LOCATION, "/ghgh")
-                .build();
+        user.setRoles(Set.of(userRole));
+        return userRepository.save(user);
+
     }
 }

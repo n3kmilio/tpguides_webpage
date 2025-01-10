@@ -41,7 +41,7 @@ public class SecurityConfig {
                             "/api/guides/**",
                             "/guide/**",
                             "/guide.html/**",
-                            "api/**"
+                            "/api/**"
                     ).permitAll();
 
 

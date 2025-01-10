@@ -77,7 +77,6 @@
 
         <div class="col-8 d-flex justify-content-center align-items-center" style="height: 80vh;">
             <div class="login-container">
-                <form id="registerForm" th:action="@{/}" onsubmit="return validatePasswords()" method="post">
                     <div class="row mb-4">
                         <div class="col-6">
                             <label for="username" class="p1">Username:</label>
@@ -103,7 +102,7 @@
                     </div>
                     <div id="error-message" style="color: red; display: none;">Passwords do not match.</div>
                     <button id="submitButton" type="submit" class="buttons">Register</button>
-                </form>
+
             </div>
         </div>
 
@@ -147,9 +146,24 @@
                 body: jsonData
             })
                 .then(response => {
-                    //Handlind response
+                    if (response.ok) {
+                        // Erfolgreiche Registrierung, Weiterleitung zur Startseite
+                        window.location.href = '/';
+                    } else {
+                        // Fehlerbehandlung
+                        console.error('Fehler bei der Registrierung');
+                    }
                 })
+                .catch(error => {
+                    console.error('Fehler:', error);
+                });
+        } else {
+            // Passwortbestätigung fehlt
+            document.getElementById('error-message').style.display = 'block';
         }
+                    //Handlind response
+
+
     })
 </script>
 
