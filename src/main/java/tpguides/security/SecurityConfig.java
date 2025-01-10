@@ -42,7 +42,8 @@ public class SecurityConfig {
                             "/guide/**",
                             "/guide.html/**",
                             "/api/**",
-                            "login"
+                            "/login",
+                            "/logout"
                     ).permitAll();
 
 
@@ -50,6 +51,15 @@ public class SecurityConfig {
                     // Zugriff auf die H2-Konsole erlauben
                     registry.requestMatchers("/h2-console/**").permitAll();
                 })
+
+                .logout(logout -> logout
+                        .logoutUrl("/logout")
+                        .logoutSuccessUrl("/")
+                        .invalidateHttpSession(true)// Löscht die Sitzung
+                        .clearAuthentication(true)
+                        .permitAll()// Löscht die Authentifizierung
+                )
+
                 .csrf(csrf -> csrf
                         .ignoringRequestMatchers(
                                 "/h2-console/**",
@@ -57,10 +67,12 @@ public class SecurityConfig {
                                 "/write",
                                 "/api/guides/**",
                                 "/",
-                                "/guide/**" // Falls POST/PUT/DELETE genutzt werden
+                                "/guide/**",
+                                "/logout"// Falls POST/PUT/DELETE genutzt werden
                         )
 
                 )
+
 
                 .headers(headers -> headers.frameOptions().sameOrigin()) // Erlaube das Einbetten der Konsole in Iframes
                 .build();
