@@ -68,38 +68,36 @@
 
         <div class="col-2" style="background-color: #208a77; min-height: 100vh;"></div>
         <div class="col-8 d-flex justify-content-center align-items-center" style="height: 80vh;">
-            <div>
-                <div class="dropdown">
-                    <button type="button" class="dropdown-button" id="dropdownButto">
-                        Select a Game
-                    </button>
-                    <div class="dropdown-content" id="dropdownConten">
-                        <div class="dropdown-item" onclick="selectGame('League of Legends', '../img/lol.png')">
-                            <img src="../img/lol.png" alt="League of Legends"> League of Legends
-                        </div>
-                        <div class="dropdown-item"
-                             onclick="selectGame('Valorant', '../img/Valorant_logo_-_pink_color_version_(cropped).png')">
-                            <img src="../img/Valorant_logo_-_pink_color_version_(cropped).png" alt="Valorant">
-                            Valorant
-                        </div>
-                        <div class="dropdown-item"
-                             onclick="selectGame('CounterStrike', '../img/Counter-Strike_CS_logo.svg.png')">
-                            <img src="../img/Counter-Strike_CS_logo.svg.png" alt="CounterStrike"> CounterStrike
+            <div class>
+                    <div class="dropdown">
+                        <button type="button" class="dropdown-button" id="dropdownButto">
+                            Select a Game
+                        </button>
+                        <div class="dropdown-content" id="dropdownConten">
+                            <div class="dropdown-item" onclick="selectGame('League of Legends', '../img/lol.png')">
+                                <img src="../img/lol.png" alt="League of Legends"> League of Legends
+                            </div>
+                            <div class="dropdown-item"
+                                 onclick="selectGame('Valorant', '../img/Valorant_logo_-_pink_color_version_(cropped).png')">
+                                <img src="../img/Valorant_logo_-_pink_color_version_(cropped).png" alt="Valorant"> Valorant
+                            </div>
+                            <div class="dropdown-item"
+                                 onclick="selectGame('CounterStrike', '../img/Counter-Strike_CS_logo.svg.png')">
+                                <img src="../img/Counter-Strike_CS_logo.svg.png" alt="CounterStrike"> CounterStrike
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <label for="title-input"
-                       style="font-size: 33px; margin-top: 40px; text-align: center; display: block;">Enter the
-                    Title:</label>
-                <input type="text" id="title-input" name="title" class="form-control"
-                       style="width: 600px; margin: 20px auto; font-size: 20px;" placeholder="Type here...">
+                    <label for="title-input"
+                           style="font-size: 33px; margin-top: 40px; text-align: center; display: block;">Enter the
+                        Title:</label>
+                    <input type="text" id="title-input" name="title" class="form-control"
+                           style="width: 600px; margin: 20px auto; font-size: 20px;" placeholder="Type here...">
 
-                <label for="guide-input"
-                       style="font-size: 33px; margin-top: 40px; text-align: center; display: block;">Write your
-                    Guide:</label>
-                <form action="/submit" method="POST">
-                    <textarea id="guide-input" name="guide" rows="8" class="form-control"
+                    <label for="guide-input"
+                           style="font-size: 33px; margin-top: 40px; text-align: center; display: block;">Write your
+                        Guide:</label>
+                    <textarea id="guide-input" name="guide-input" rows="8" class="form-control"
                               style="width: 600px; margin: 20px auto; font-size: 20px;"
                               placeholder="Write your guide here..."></textarea>
 
@@ -112,13 +110,12 @@
         </div>
     </div>
 
-    <div class="col-2" style="background-color: #208a77; min-height: 100vh;">
-        <a href="index.html">
-            <img src="../img/garbage_can.png" alt="Garbage" height="50"
-                 style="margin-bottom: 20px; cursor: pointer; position: absolute; bottom: 1px">
-        </a>
+        <div class="col-2" style="background-color: #208a77; min-height: 100vh;">
+            <a href="index.html">
+                <img src="../img/garbage_can.png" alt="Garbage" height="50" style="margin-bottom: 20px; cursor: pointer; position: absolute; bottom: 1px">
+            </a>
+        </div>
     </div>
-</div>
 </div>
 
 <script src="../JavaScript/dropdown.js" defer></script>

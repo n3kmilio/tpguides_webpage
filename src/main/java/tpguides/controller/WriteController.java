@@ -16,16 +16,17 @@ public class WriteController {
         this.guideservice = guideRepository;
     }
 
-    @PostMapping("/submit")
+    @PostMapping("/write")
     public String writeSubmit (@RequestParam("guide-input") String Content,
                                @RequestParam("title-input") String Title,
-                               @RequestParam("dropdownConten") String game) {
+                               @RequestParam("desc-input")  String Desc,
+                               @RequestParam("droppie")     String Game) {
         Guide guide = new Guide();
         guide.setContent(Content);
+        guide.setGame(Game);
+        guide.setDescription(Desc);
         guide.setTitle(Title);
-        guide.setGame(game);
         guideservice.save(guide);
         return "redirect:/";
     }
-
 }
