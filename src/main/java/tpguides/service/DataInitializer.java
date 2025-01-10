@@ -145,8 +145,8 @@ public class DataInitializer implements CommandLineRunner {
             Role adminRole = roleRepository.findByName("ADMIN");
             Role userRole = roleRepository.findByName("USER");
 
-            User admin = new User("admin", passwordEncoder.encode("admin123"), "admin@admin.de", Set.of(adminRole, userRole));
-            User user = new User("user", passwordEncoder.encode("user123"), "user@user.de", Set.of(userRole));
+            User admin = new User("admin", passwordEncoder.encode("admin123"), "admin@admin.de", Set.of(adminRole, userRole), "Hi, ich bin Günther, ein leidenschaftlicher Gamer und Strategiefan, der seit Jahren aktiv in den Spielen League of Legends, Valorant und Counter-Strike unterwegs ist.");
+            User user = new User("user", passwordEncoder.encode("user123"), "user@user.de", Set.of(userRole), "Hallo, mein Name ist Klaus, und ich bin ein leidenschaftlicher Gamer mit einem Faible für taktische Shooter wie Valorant und Counter-Strike.");
 
             userRepository.save(admin);
             userRepository.save(user);

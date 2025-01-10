@@ -1,14 +1,19 @@
 package tpguides.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;;
+import org.springframework.web.bind.annotation.GetMapping;
+import tpguides.repository.UserRepository;
+import tpguides.service.CustomUserDetailsService;;
 
 @Controller
 public class HomeController {
+     @Autowired
+     UserRepository userRepository;
 
     @GetMapping("/")
     public String home() {
@@ -32,7 +37,11 @@ public class HomeController {
 
         if (principal instanceof User) {
             User user = (User) principal;
+
+            tpguides.model.User UserTP = userRepository.findByUsername(user.getUsername());
+            String description = UserTP.getDescription();
             model.addAttribute("username", user.getUsername());
+            model.addAttribute("description",description);
         } else {
             model.addAttribute("username", "Guest");
         }

@@ -13,6 +13,7 @@ public class User {
     private String username;
     private String email;
     private String password; // Verschlüsselt gespeichert
+    private String description;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
@@ -24,11 +25,12 @@ public class User {
 
     public User() {}
 
-    public User(String username, String password,String email, Set<Role> roles) {
+    public User(String username, String password,String email, Set<Role> roles, String description) {
         this.username = username;
         this.password = password;
         this.email = email;
         this.roles = roles;
+        this.description = description;
     }
 
     public Set<Role> getRoles() {
@@ -69,5 +71,13 @@ public class User {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
