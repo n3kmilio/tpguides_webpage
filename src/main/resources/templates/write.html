@@ -67,14 +67,16 @@
 
 
         <div class="col-2" style="background-color: #208a77; min-height: 100vh;"></div>
-        <div class="col-8 d-flex justify-content-center align-items-center" style="height: 80vh;">
+        <div class="col-8 d-flex justify-content-center align-items-center" style="height: 110vh;">
             <div class>
+                <form method="POST">
                     <div class="dropdown">
-                        <button type="button" class="dropdown-button" id="dropdownButto">
+                        <button type="button" class="dropdown-button" id="dropdownButto" name="droppie">
                             Select a Game
                         </button>
                         <div class="dropdown-content" id="dropdownConten">
-                            <div class="dropdown-item" onclick="selectGame('League of Legends', '../img/lol.png')">
+                            <div class="dropdown-item"
+                                 onclick="selectGame('League of Legends', '../img/lol.png')">
                                 <img src="../img/lol.png" alt="League of Legends"> League of Legends
                             </div>
                             <div class="dropdown-item"
@@ -91,9 +93,13 @@
                     <label for="title-input"
                            style="font-size: 33px; margin-top: 40px; text-align: center; display: block;">Enter the
                         Title:</label>
-                    <input type="text" id="title-input" name="title" class="form-control"
+                    <input type="text" id="title-input" name="title-input" class="form-control"
                            style="width: 600px; margin: 20px auto; font-size: 20px;" placeholder="Type here...">
-
+                    <label for="desc-input"
+                       style="font-size: 33px; margin-top: 40px; text-align: center; display: block;">Enter the
+                    Description:</label>
+                    <input type="text" id="desc-input" name="desc-input" class="form-control"
+                       style="width: 600px; margin: 20px auto; font-size: 20px;" placeholder="Type here...">
                     <label for="guide-input"
                            style="font-size: 33px; margin-top: 40px; text-align: center; display: block;">Write your
                         Guide:</label>
@@ -102,10 +108,9 @@
                               placeholder="Write your guide here..."></textarea>
 
                     <div style="text-align: center; margin-top: 40px;">
-                        <button id="publsih" type="submit" class="buttons">Publish</button>
+                        <button id="publish" type="submit" class="buttons">Publish</button>
                     </div>
                 </form>
-
             </div>
         </div>
     </div>
@@ -118,9 +123,10 @@
     </div>
 </div>
 
-<script src="../JavaScript/dropdown.js" defer></script>
-<script src="../JavaScript/Search.js" defer></script>
-<script src="../JavaScript/Tags.js" defer></script>
+<script src="../Javascript/dropdown.js" defer></script>
+<script src="../Javascript/write.js" defer></script>
+<script src="../Javascript/Search.js" defer></script>
+<script src="../Javascript/Tags.js" defer></script>
 
 </body>
 </html>
