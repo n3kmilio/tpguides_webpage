@@ -29,6 +29,8 @@
         </a>
     </div>
 
+
+
     <div class="search-bar d-flex align-items-center">
         <div class="dropdown">
             <button type="button" class="dropdown-button" id="dropdownButton">
@@ -58,6 +60,14 @@
         <form action="results.html" method="get" class="d-flex">
             <input type="text" id="searchInput" class="search-input" placeholder="Search guides..."
                    onkeyup="filterResults()"/>
+        </form>
+
+
+    </div>
+
+    <div class="navigation-buttons d-flex align-items-center">
+        <form  action="/logout" method="post" style="display: inline;">
+            <button class="buttonslogin" type="submit">Logout</button>
         </form>
     </div>
 

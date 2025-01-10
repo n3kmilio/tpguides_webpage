@@ -40,6 +40,7 @@ public class RegistrationContoller {
             throw new UserAlreadyExistsException("EIn Benutzer mit disem Username existiert bereits");
         }
         Role userRole = roleRepository.findByName("USER");
+        user.setDescription("Hallo ich bin ein neuer User");
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setRoles(Set.of(userRole));
         return userRepository.save(user);

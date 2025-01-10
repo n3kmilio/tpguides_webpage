@@ -59,21 +59,23 @@
 
         <form th:action="@{/results}" method="get" class="d-flex">
             <form th:action="@{/results}" method="get" class="d-flex">
-                <input type="text" id="searchInput" class="search-input" placeholder="Search guides..." onkeyup="filterResults()" >
+                <input type="text" id="searchInput" class="search-input" placeholder="Search guides..."
+                       onkeyup="filterResults()">
             </form>
         </form>
     </div>
 
     <div class="navigation-buttons d-flex align-items-center">
+        <form th:if="${!isAuthenticated}" action="/login" method="get" style="display: inline;">
+            <button class="buttonslogin" type="submit">Login</button>
         </form>
-        <form th:action="@{/login}" method="get" style="display: inline;">
-            <button id="loginButton" class="buttonslogin" type="submit">Login</button>
+        <form th:if="${isAuthenticated}" action="/myprofile" method="get" style="display: inline;">
+            <button class="buttonslogin" type="submit">MyProfile</button>
         </form>
 
-        </form>
-        <form  action="/logout" method="post" style="display: inline;">
-            <button class="buttonslogin" type="submit">Logout</button>
-        </form>
+
+
+
     </div>
 </div>
 
@@ -115,25 +117,10 @@
     </div>
 </div>
 
-    <script src="../Javascript/dropdown.js"></script>
-    <script src="../Javascript/Search.js"></script>
-    <script src="../Javascript/Tags.js"></script>
-    <script>
-        window.addEventListener('load', function() {
-            const savedText = sessionStorage.getItem('buttonText');
-            const savedLink = sessionStorage.getItem('linkText');
-            const loginButton = document.getElementById('loginButton');
+<script src="../Javascript/dropdown.js"></script>
+<script src="../Javascript/Search.js"></script>
+<script src="../Javascript/Tags.js"></script>
 
-            if (savedText) {
-                loginButton.textContent = savedText;
-            }
-
-            if (savedLink) {
-                loginButton.form.action = savedLink;
-            }
-
-        });
-    </script>
 
 </body>
 </html>

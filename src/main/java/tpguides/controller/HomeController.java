@@ -1,6 +1,7 @@
 package tpguides.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.neo4j.Neo4jProperties;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
@@ -8,7 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import tpguides.repository.UserRepository;
-import tpguides.service.CustomUserDetailsService;;
+import tpguides.service.CustomUserDetailsService;
+import java.util.Optional;
 
 @Controller
 public class HomeController {
@@ -16,7 +18,14 @@ public class HomeController {
      UserRepository userRepository;
 
     @GetMapping("/")
-    public String home() {
+    public String home(Model model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null && authentication.isAuthenticated() && !"anonymousUser".equals(authentication.getName())) {
+            model.addAttribute("isAuthenticated", true);
+        } else {
+            model.addAttribute("isAuthenticated", false);
+        }
+
         return "index";
     }
 
@@ -38,8 +47,8 @@ public class HomeController {
         if (principal instanceof User) {
             User user = (User) principal;
 
-            tpguides.model.User UserTP = userRepository.findByUsername(user.getUsername());
-            String description = UserTP.getDescription();
+            Optional<tpguides.model.User> UserTP = userRepository.findByUsername(user.getUsername());
+            String description = UserTP.get().getDescription();
             model.addAttribute("username", user.getUsername());
             model.addAttribute("description",description);
         } else {
@@ -68,5 +77,7 @@ public class HomeController {
     public String write() {
         return "write";
     }
+
+
 
 }

@@ -103,37 +103,6 @@
     </div>
 </div>
 
-<script>
-
-
-    window.addEventListener('load', function() {
-        const savedText = sessionStorage.getItem('buttonText');
-        const loginButton = document.getElementById('loginButton');
-
-        if (savedText) {
-            loginButton.textContent = savedText;
-        }
-
-        if (savedLink) {
-            loginButton.form.action = savedLink;
-        }
-
-    });
-
-
-    document.getElementById('loginForm').addEventListener('click', function() {
-        const newText = "My Profile"; // Der neue Text
-        const newLink = "/myprofile";
-        document.getElementById('loginButton').textContent = newText; // Text des Buttons ändern
-        document.getElementById('loginButton').form.action = newLink;
-
-
-        sessionStorage.setItem('buttonText', newText);
-        sessionStorage.setItem('linkText',newLink);
-    });
-
-</script>
-
 <script src="../Javascript/dropdown.js" defer></script>
 <script src="../Javascript/Tags.js" defer></script>
 <!--<script src="../JavaScript/Search.js" defer></script>-->

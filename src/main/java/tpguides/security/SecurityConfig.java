@@ -32,7 +32,6 @@ public class SecurityConfig {
                             "/style.css",
                             "/Javascript/**",
                             "/img/**",
-                            "/",
                             "/link",
                             "/results",
                             "/submit",
@@ -43,15 +42,17 @@ public class SecurityConfig {
                             "/guide.html/**",
                             "/api/**",
                             "/login",
-                            "/logout"
+                            "/logout",
+                            "/check-authentication"
                     ).permitAll();
 
 
                     registry.requestMatchers("/myprofile/**").authenticated();
                     // Zugriff auf die H2-Konsole erlauben
                     registry.requestMatchers("/h2-console/**").permitAll();
+                    registry.anyRequest().authenticated();
                 })
-
+                .anonymous().disable()
                 .logout(logout -> logout
                         .logoutUrl("/logout")
                         .logoutSuccessUrl("/")
@@ -59,6 +60,7 @@ public class SecurityConfig {
                         .clearAuthentication(true)
                         .permitAll()// Löscht die Authentifizierung
                 )
+
 
                 .csrf(csrf -> csrf
                         .ignoringRequestMatchers(
