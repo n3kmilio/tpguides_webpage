@@ -20,6 +20,7 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         //noinspection removal
+
         return http
                 .formLogin(httpForm -> {
                     httpForm.loginPage("/login").permitAll();
@@ -39,23 +40,39 @@ public class SecurityConfig {
                             "/write",
                             "/api/guides/**",
                             "/guide/**",
-                            "/guide.html/**"
+                            "/guide.html/**",
+                            "/api/**",
+                            "/login",
+                            "/logout"
                     ).permitAll();
+
 
                     registry.requestMatchers("/myprofile/**").authenticated();
                     // Zugriff auf die H2-Konsole erlauben
                     registry.requestMatchers("/h2-console/**").permitAll();
                 })
+
+                .logout(logout -> logout
+                        .logoutUrl("/logout")
+                        .logoutSuccessUrl("/")
+                        .invalidateHttpSession(true)// Löscht die Sitzung
+                        .clearAuthentication(true)
+                        .permitAll()// Löscht die Authentifizierung
+                )
+
                 .csrf(csrf -> csrf
                         .ignoringRequestMatchers(
                                 "/h2-console/**",
                                 "/register",
                                 "/write",
                                 "/api/guides/**",
-                                "/guide/**" // Falls POST/PUT/DELETE genutzt werden
+                                "/",
+                                "/guide/**",
+                                "/logout"// Falls POST/PUT/DELETE genutzt werden
                         )
 
                 )
+
 
                 .headers(headers -> headers.frameOptions().sameOrigin()) // Erlaube das Einbetten der Konsole in Iframes
                 .build();
