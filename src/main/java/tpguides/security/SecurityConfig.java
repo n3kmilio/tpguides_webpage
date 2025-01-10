@@ -34,6 +34,7 @@ public class SecurityConfig {
                             "/",
                             "/link",
                             "/results",
+                            "/submit",
                             "/guide",
                             "/write",
                             "/api/guides/**",
@@ -49,6 +50,7 @@ public class SecurityConfig {
                         .ignoringRequestMatchers(
                                 "/h2-console/**",
                                 "/register",
+                                "/write",
                                 "/api/guides/**",
                                 "/guide/**" // Falls POST/PUT/DELETE genutzt werden
                         )
