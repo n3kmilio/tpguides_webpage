@@ -10,7 +10,7 @@ public class Guide {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     private String title;
     private String description;
@@ -29,7 +29,7 @@ public class Guide {
         this.game = game;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -60,9 +60,4 @@ public class Guide {
     public void setDescription(String description) {
         this.description = description;
     }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-// Getter und Setter
 }
