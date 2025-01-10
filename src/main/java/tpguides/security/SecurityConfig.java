@@ -20,6 +20,7 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         //noinspection removal
+
         return http
                 .formLogin(httpForm -> {
                     httpForm.loginPage("/login").permitAll();
@@ -39,8 +40,10 @@ public class SecurityConfig {
                             "/write",
                             "/api/guides/**",
                             "/guide/**",
-                            "/guide.html/**"
+                            "/guide.html/**",
+                            "api/**"
                     ).permitAll();
+
 
                     registry.requestMatchers("/myprofile/**").authenticated();
                     // Zugriff auf die H2-Konsole erlauben
@@ -52,6 +55,7 @@ public class SecurityConfig {
                                 "/register",
                                 "/write",
                                 "/api/guides/**",
+                                "/",
                                 "/guide/**" // Falls POST/PUT/DELETE genutzt werden
                         )
 
