@@ -198,16 +198,23 @@
             <br>
             <br>
             <br>
-            <h1>Description</h1>
+
             <p class="p2" th:text="${description}">
             </p>
 
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+
             <div class="guide-container">
-                <h3>Deine Guides:</h3>
+                <h4> Deine Guides:</h4>
                 <ul>
-                    <li th:each="guide : ${Guides}">
+                    <h3 th:each="guide : ${Guides}">
                         <a th:href="@{/guide.html(title=${guide.title})}" th:text="${guide.title}"></a>
-                    </li>
+                    </h3>
                 </ul>
             </div>
 
