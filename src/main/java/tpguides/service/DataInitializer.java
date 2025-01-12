@@ -39,7 +39,7 @@ public class DataInitializer implements CommandLineRunner {
             guide1.setTitle("Draven Tutorial");
             guide1.setDescription("How to master Draven in League of Legends");
             guide1.setGame("League of Legends");
-            guide1.setAuthor("admin");
+            guide1.setAuthor("Overon");
             guide1.setTags(Arrays.asList("ADC", "Draven", "Mechanics", "Overon"));
 
             // Beispiel 2: Briars Feet
@@ -47,14 +47,14 @@ public class DataInitializer implements CommandLineRunner {
             guide2.setTitle("Briars Feet");
             guide2.setDescription("A detailed Guide about Briars Feet");
             guide2.setGame("League of Legends");
-            guide2.setAuthor("admin");
+            guide2.setAuthor("lildio");
             guide2.setTags(Arrays.asList("Champion lore", "Briar", "lildio"));
 
             // Beispiel 3: Jett Guide
             Guide guide3 = new Guide();
             guide3.setTitle("Jett Guide");
             guide3.setDescription("Complete guide to Jett in Valorant");
-            guide3.setGame("Valorant");
+            guide3.setGame("TapfereMilch");
             guide3.setAuthor("admin");
             guide3.setTags(Arrays.asList("Agent", "Jett", "Gameplay"));
 
@@ -62,14 +62,16 @@ public class DataInitializer implements CommandLineRunner {
             Guide guide4 = new Guide();
             guide4.setTitle("Counter-Strike 2 Strategies");
             guide4.setDescription("Top strategies for Counter-Strike 2");
+            guide4.setAuthor("TapfereMilch");
             guide4.setGame("Counter-Strike");
-            guide4.setTags(Arrays.asList("Strategy", "CS2", "Tactics", "GrafGrafowitz"));
+            guide4.setTags(Arrays.asList("Strategy", "CS2", "Tactics", "TapfereMilch"));
 
             // Beispiel 5: Inferno Smokes
             Guide guide5 = new Guide();
             guide5.setTitle("Inferno Smokes");
             guide5.setDescription("Effective smokes in CS:GO's Inferno map");
             guide5.setGame("Counter-Strike");
+            guide5.setAuthor("Skywalker");
             guide5.setTags(Arrays.asList("Smokes", "Inferno", "CSGO", "Skywalker"));
 
             // Beispiel 6: Breeze Smokes
@@ -77,6 +79,7 @@ public class DataInitializer implements CommandLineRunner {
             guide6.setTitle("Breeze Smokes");
             guide6.setDescription("Smokes for Breeze in Valorant");
             guide6.setGame("Valorant");
+            guide6.setAuthor("Skywalker");
             guide6.setTags(Arrays.asList("Smokes", "Breeze", "Utility"));
 
 
@@ -85,36 +88,42 @@ public class DataInitializer implements CommandLineRunner {
             guide7.setTitle("Mastering ADC in LoL");
             guide7.setDescription("A guide to becoming a top-tier ADC in League of Legends");
             guide7.setGame("League of Legends");
+            guide7.setAuthor("Overon");
             guide7.setTags(Arrays.asList("ADC", "Positioning", "Mechanics", "League"));
 
             Guide guide8 = new Guide();
             guide8.setTitle("Valorant Agent Guide: Phoenix");
             guide8.setDescription("Everything you need to know to play Phoenix in Valorant");
             guide8.setGame("Valorant");
+            guide8.setAuthor("Overon");
             guide8.setTags(Arrays.asList("Phoenix", "Agent", "Valorant", "Gameplay"));
 
             Guide guide9 = new Guide();
             guide9.setTitle("CS:GO Tactics: Dust 2");
             guide9.setDescription("The ultimate guide to strategies on Dust 2 in CS:GO");
             guide9.setGame("Counter-Strike");
+            guide9.setAuthor("Overon");
             guide9.setTags(Arrays.asList("Tactics", "Dust 2", "CSGO", "Strategy"));
 
             Guide guide10 = new Guide();
             guide10.setTitle("Jett Smokes and Utility");
             guide10.setDescription("How to use Jett’s smokes and utility in Valorant effectively");
             guide10.setGame("Valorant");
+            guide10.setAuthor("TapfereMilch");
             guide10.setTags(Arrays.asList("Jett", "Utility", "Smokes", "Valorant"));
 
             Guide guide11 = new Guide();
             guide11.setTitle("CS2: Advanced Smokes");
             guide11.setDescription("Advanced smoke strategies for CS2 maps");
             guide11.setGame("Counter-Strike");
+            guide11.setAuthor("TapfereMilch");
             guide11.setTags(Arrays.asList("Smokes", "Advanced", "Strategy", "CS2"));
 
             Guide guide12 = new Guide();
             guide12.setTitle("Briar Lore and Gameplay");
             guide12.setDescription("Understanding Briar’s backstory and her gameplay in LoL");
             guide12.setGame("League of Legends");
+            guide12.setAuthor("Skywalker");
             guide12.setTags(Arrays.asList("Lore", "Champion", "Briar", "Gameplay"));
 
 
@@ -148,11 +157,16 @@ public class DataInitializer implements CommandLineRunner {
             Role adminRole = roleRepository.findByName("ADMIN");
             Role userRole = roleRepository.findByName("USER");
 
-            User admin = new User("admin", passwordEncoder.encode("admin123"), "admin@admin.de", Set.of(adminRole, userRole), "Hi, ich bin Günther, ein leidenschaftlicher Gamer und Strategiefan, der seit Jahren aktiv in den Spielen League of Legends, Valorant und Counter-Strike unterwegs ist.");
-            User user = new User("user", passwordEncoder.encode("user123"), "user@user.de", Set.of(userRole), "Hallo, mein Name ist Klaus, und ich bin ein leidenschaftlicher Gamer mit einem Faible für taktische Shooter wie Valorant und Counter-Strike.");
-
-            userRepository.save(admin);
-            userRepository.save(user);
+            User lildio = new User("lildio", passwordEncoder.encode("lildio666"), "emilio.gaebler@stud-th.luebeck.de", Set.of(adminRole, userRole), "Moin, ich bin Emilio");
+            User Overon = new User("Overon", passwordEncoder.encode("overon123"), "mathis.sander@stud-th.luebeck.de", Set.of(adminRole, userRole), "Hi, mein Name ist Mathis");
+            User Skywalker = new User("Skywalker", passwordEncoder.encode("skywalker123"), "erik@stud-th.luebeck.de", Set.of(adminRole,userRole), "Hallo ich bin Erik :)");
+            User TapfereMilch = new User("TapfereMilch", passwordEncoder.encode("tapferemilch123"), "torve.petersen@stud-th.luebeck.de", Set.of(adminRole,userRole), "Hallo, mein Name ist Torve und ich bin discord Mod :3");
+            User FirstUser = new User("user",passwordEncoder.encode("user123"),"user@stud-th.luebeck.de",Set.of(userRole),"Moin, ich bin ein User.");
+            userRepository.save(lildio);
+            userRepository.save(Overon);
+            userRepository.save(Skywalker);
+            userRepository.save(TapfereMilch);
+            userRepository.save(FirstUser);
         }
     }
 }
