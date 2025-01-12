@@ -1,7 +1,7 @@
 let selectedTags = [];
 let guidesData = [];
 
-// Fetch die Guides vom Backend
+
 async function fetchGuides() {
     try {
         const response = await fetch('/api/guides');
@@ -16,7 +16,6 @@ async function fetchGuides() {
     }
 }
 
-// Aufruf der API, um nach Guides zu suchen
 async function searchGuides(searchTerm) {
     try {
         const response = await fetch(`/api/guides/search?searchTerm=${searchTerm}`);
@@ -30,6 +29,29 @@ async function searchGuides(searchTerm) {
         console.error('Fehler beim Abrufen der Suchergebnisse:', error);
     }
 }
+
+async function searchProfiles(searchTerm) {
+    try {
+        const response = await fetch(`/api/users/search?username=${searchTerm}`);
+        if (response.ok) {
+            const user = await response.json();
+            window.location.href = `/profile.html?username=${user.username}`;
+        } else {
+            console.error('Benutzer nicht gefunden');
+        }
+    } catch (error) {
+        console.error('Fehler beim Abrufen der Benutzerdaten:', error);
+    }
+}
+
+document.getElementById('searchInput').addEventListener('input', (event) => {
+    const searchTerm = event.target.value;
+    if (searchTerm) {
+        searchGuides(searchTerm);
+        searchProfiles(searchTerm);
+    }
+});
+
 
 function addTag(tag) {
     if (!selectedTags.includes(tag)) {
@@ -69,6 +91,20 @@ function filterResults() {
         return matchesSearch && matchesTags;
     });
 
+    // Suche auch Benutzer
+    fetch(`/api/users/search?username=${searchTerm}`)
+        .then(response => {
+            if (response.ok) return response.json();
+        })
+        .then(user => {
+            if (user) {
+                const userElement = document.createElement('div');
+                userElement.classList.add('search-item');
+                userElement.innerHTML = `<a href="profile.html?username=${user.username}"><h4>Profil: ${user.username}</h4><p>${user.description}</p></a>`;
+                searchResultsContainer.appendChild(userElement);
+            }
+        });
+
     if (filteredGuides.length > 0) {
         filteredGuides.forEach(guide => {
             const guideElement = document.createElement('div');
@@ -81,14 +117,13 @@ function filterResults() {
     } else {
         searchOverlay.style.display = 'none';
     }
+
 }
 
-// Beim Laden der Seite Guides abrufen
 document.addEventListener('DOMContentLoaded', () => {
     fetchGuides();
 });
 
-// Wenn der Benutzer nach Guides sucht, den Suchbegriff verwenden
 document.getElementById('searchInput').addEventListener('input', (event) => {
     searchGuides(event.target.value);
 });

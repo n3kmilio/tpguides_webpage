@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="profile-container">
+    <div class="profile-header text-center">
+        <h1 id="profileUsername">Benutzername</h1>
+        <p id="profileDescription" class="profile-description"></p>
+    </div>
+
+    <div class="profile-content">
+        <h2 class="section-title">Guides von <span id="profileOwner"></span></h2>
+        <div id="userGuides" class="guides-list"></div>
+    </div>
+
+    <a href="index.html" class="btn btn-primary mt-3">Zurück zur Startseite</a>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', async () => {
+        const params = new URLSearchParams(window.location.search);
+        const username = params.get('username');
+
+        if (username) {
+            try {
+                const response = await fetch(`/api/users/${username}`);
+                if (response.ok) {
+                    const user = await response.json();
+
+                    // Benutzerinformationen füllen
+                    document.getElementById('profileUsername').innerText = user.username;
+                    document.getElementById('profileDescription').innerText = user.description || "Keine Beschreibung verfügbar.";
+                    document.getElementById('profileOwner').innerText = user.username;
+
+                    // Benutzer-Guide-Liste
+                    const userGuidesContainer = document.getElementById('userGuides');
+                    userGuidesContainer.innerHTML = ''; // Container leeren
+                    user.guides.forEach(guide => {
+                        const guideElement = document.createElement('div');
+                        guideElement.classList.add('guide-item');
+                        guideElement.innerHTML = `
+                                <a href="guide.html?title=${encodeURIComponent(guide.title)}">
+                                    <h4>${guide.title}</h4>
+                                    <p>${guide.description}</p>
+                                </a>
+                            `;
+                        userGuidesContainer.appendChild(guideElement);
+                    });
+                } else {
+                    console.error('Fehler beim Abrufen der Profildaten');
+                }
+            } catch (error) {
+                console.error('Fehler beim Laden des Profils:', error);
+            }
+        } else {
+            console.error('Kein Benutzername in der URL angegeben.');
+        }
+    });
+</script>
+</body>
+</html>
