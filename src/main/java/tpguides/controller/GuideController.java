@@ -27,7 +27,7 @@ public class GuideController {
     }
 
     @GetMapping("/guide/{id}")
-    public String getGuide(@PathVariable Long id, Model model) {
+    public String getGuide(@PathVariable Integer id, Model model) {
         Guide guide = guideRepository.findById(id).orElseThrow(() -> new RuntimeException("Guide not found"));
         model.addAttribute("guide", guide);
         return "guide"; // render guide.html
