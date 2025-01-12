@@ -14,7 +14,7 @@ public class Guide {
 
     private String title;
     private String description;
-
+    private String author;
     private String content;
     private String game;
 
@@ -59,5 +59,13 @@ public class Guide {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
     }
 }

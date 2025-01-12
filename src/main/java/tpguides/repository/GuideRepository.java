@@ -11,4 +11,6 @@ import java.util.Optional;
 public interface GuideRepository extends JpaRepository<Guide, Integer> {
     List<Guide> findByTitleContainingOrDescriptionContaining(String title, String description);
     Optional<Guide> findById(Integer id);
+
+    List<Guide> findByAuthor(String author);
 }

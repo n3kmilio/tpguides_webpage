@@ -55,10 +55,10 @@ public class GuideController {
                                     @RequestParam(name = "tags", required = false) List<String> tags,
                                     Model model) {
 
-        // Suche nach den Guides anhand des Suchbegriffs und der Tags
+
         model.addAttribute("guides", guideService.searchGuides(searchTerm, tags));
         model.addAttribute("searchTerm", searchTerm);
-        return "result"; // result.html wird gerendert
+        return "result";
     }
 
 }

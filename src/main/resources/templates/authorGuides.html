@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title><!doctype html>
+        <html lang="de">
+        <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Guides von <span th:text="${author}">Author</span></title>
+</head>
+<body>
+<h1>Guides von <span th:text="${author}">Author</span></h1>
+
+<div th:if="${guides != null}">
+    <ul>
+        <li th:each="guide : ${guides}">
+            <a th:href="@{/guide.html(title=${guide.title})}" th:text="${guide.title}"></a>
+        </li>
+    </ul>
+</div>
+
+<div th:if="${errorMessage != null}">
+    <p th:text="${errorMessage}"></p>
+</div>
+
+<a th:href="@{/myprofile}">Zurück zum Profil</a>
+</body>
+</html>
+</title>
+</head>
+<body>
+
+</body>
+</html>

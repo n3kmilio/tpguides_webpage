@@ -202,9 +202,13 @@
             <p class="p2" th:text="${description}">
             </p>
 
-            <div style="position: absolute; bottom:1px;">
-                <p class="p1"> New Guides: </p>
-                <p class="p2" th:text="${Guides}">
+            <div class="guide-container">
+                <h3>Deine Guides:</h3>
+                <ul>
+                    <li th:each="guide : ${Guides}">
+                        <a th:href="@{/guide.html(title=${guide.title})}" th:text="${guide.title}"></a>
+                    </li>
+                </ul>
             </div>
 
         </div>

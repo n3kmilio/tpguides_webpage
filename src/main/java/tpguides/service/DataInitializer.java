@@ -39,6 +39,7 @@ public class DataInitializer implements CommandLineRunner {
             guide1.setTitle("Draven Tutorial");
             guide1.setDescription("How to master Draven in League of Legends");
             guide1.setGame("League of Legends");
+            guide1.setAuthor("admin");
             guide1.setTags(Arrays.asList("ADC", "Draven", "Mechanics", "Overon"));
 
             // Beispiel 2: Briars Feet
@@ -46,6 +47,7 @@ public class DataInitializer implements CommandLineRunner {
             guide2.setTitle("Briars Feet");
             guide2.setDescription("A detailed Guide about Briars Feet");
             guide2.setGame("League of Legends");
+            guide2.setAuthor("admin");
             guide2.setTags(Arrays.asList("Champion lore", "Briar", "lildio"));
 
             // Beispiel 3: Jett Guide
@@ -53,6 +55,7 @@ public class DataInitializer implements CommandLineRunner {
             guide3.setTitle("Jett Guide");
             guide3.setDescription("Complete guide to Jett in Valorant");
             guide3.setGame("Valorant");
+            guide3.setAuthor("admin");
             guide3.setTags(Arrays.asList("Agent", "Jett", "Gameplay"));
 
             // Beispiel 4: Counter-Strike 2 Strategies
