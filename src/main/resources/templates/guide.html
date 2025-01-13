@@ -59,6 +59,9 @@
 
     <div class="navigation-buttons d-flex align-items-center">
         <!-- Dynamischer Login-Button -->
+        <form th:if="${isAuthenticated}" action="/write" method="get" style="display: inline;">
+            <button class="buttonslogin" type="submit">Write</button>
+        </form>
         <form action="{{loginAction}}" method="get" style="display: inline;">
             <button class="buttonslogin" type="submit">{{loginButtonText}}</button>
         </form>
