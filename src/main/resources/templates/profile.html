@@ -1,26 +1,50 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profil</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../style.css">
 </head>
 <body>
-<div class="profile-container">
-    <div class="profile-header text-center">
-        <h1 id="profileUsername">Benutzername</h1>
-        <p id="profileDescription" class="profile-description"></p>
+
+<!-- Header mit Navigation -->
+<div class="topnav d-flex justify-content-between align-items-center px-3">
+    <div class="logo d-flex align-items-center">
+        <a href="/"><img src="../img/Logo-487x487.png" alt="Logo" width="72.2" height="72.2"></a>
+        <a href="/" style="text-decoration: none;">
+            <img src="../img/Logo-Schrifft.png" alt="LogoSchrift" width="274.6" height="67.5">
+        </a>
     </div>
 
-    <div class="profile-content">
-        <h2 class="section-title">Guides von <span id="profileOwner"></span></h2>
-        <div id="userGuides" class="guides-list"></div>
+    <div class="navigation-buttons d-flex align-items-center">
+        <form action="/logout" method="post" style="display: inline;">
+            <button class="buttonslogin" type="submit">Logout</button>
+        </form>
     </div>
-
-    <a href="index.html" class="btn btn-primary mt-3">Zurück zur Startseite</a>
 </div>
 
+<!-- Hauptcontent -->
+<div class="container-fluid">
+    <div class="row">
+        <!-- Profil-Seite -->
+        <div class="col-12">
+            <div class="profile-header text-center">
+                <h1 id="profileUsername">Benutzername</h1>
+                <p id="profileDescription" class="profile-description"></p>
+            </div>
+
+            <div class="profile-content">
+                <h2 class="section-title">Guides von <span id="profileOwner"></span></h2>
+                <div id="userGuides" class="guides-list"></div>
+            </div>
+
+            <a href="index.html" class="btn btn-primary mt-3">Zurück zur Startseite</a>
+        </div>
+    </div>
+</div>
+
+<!-- JavaScript zur Dynamischen Verarbeitung der Daten -->
 <script>
     document.addEventListener('DOMContentLoaded', async () => {
         const params = new URLSearchParams(window.location.search);
@@ -28,27 +52,34 @@
 
         if (username) {
             try {
-                const response = await fetch(`/api/users/${username}`);
+                const response = await fetch(`profile.html?username=${username}`);
                 if (response.ok) {
-                    const user = await response.json();
+                    const html = await response.text();
 
-                    // Benutzerinformationen füllen
-                    document.getElementById('profileUsername').innerText = user.username;
-                    document.getElementById('profileDescription').innerText = user.description || "Keine Beschreibung verfügbar.";
-                    document.getElementById('profileOwner').innerText = user.username;
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(html, 'text/html');
 
-                    // Benutzer-Guide-Liste
+
+                    document.getElementById('profileUsername').innerText = doc.querySelector('#profileUsername').innerText;
+
+
+                    const description = doc.querySelector('#profileDescription');
+                    document.getElementById('profileDescription').innerText = description ? description.innerText : "Keine Beschreibung verfügbar.";
+
+
+                    const guidesContainer = doc.querySelector('#userGuides');
                     const userGuidesContainer = document.getElementById('userGuides');
-                    userGuidesContainer.innerHTML = ''; // Container leeren
-                    user.guides.forEach(guide => {
+                    userGuidesContainer.innerHTML = '';
+
+                    guidesContainer.querySelectorAll('.guide-item').forEach(guide => {
                         const guideElement = document.createElement('div');
                         guideElement.classList.add('guide-item');
                         guideElement.innerHTML = `
-                                <a href="guide.html?title=${encodeURIComponent(guide.title)}">
-                                    <h4>${guide.title}</h4>
-                                    <p>${guide.description}</p>
-                                </a>
-                            `;
+                        <a href="guide.html?title=${encodeURIComponent(guide.querySelector('a').getAttribute('href'))}">
+                            <h4>${guide.querySelector('h4').innerText}</h4>
+                            <p>${guide.querySelector('p').innerText}</p>
+                        </a>
+                    `;
                         userGuidesContainer.appendChild(guideElement);
                     });
                 } else {
@@ -62,5 +93,6 @@
         }
     });
 </script>
+
 </body>
 </html>
