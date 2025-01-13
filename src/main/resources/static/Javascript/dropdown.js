@@ -9,21 +9,6 @@ document.addEventListener("DOMContentLoaded", function () {
     function selectGame(gameName, gameImage) {
         dropdownButton.textContent = gameName;
         dropdownContent.classList.remove('show');
-
-        fetch('/droppie', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({selection: gameName})
-        })
-            .then(response => response.json())
-            .then(data => {
-                console.log('Success', data);
-            })
-            .catch(error => {
-                console.log('Error', error)
-            })
     }
 
     document.querySelectorAll('.dropdown-item').forEach(item => {

@@ -10,7 +10,7 @@ import tpguides.repository.GuideRepository;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 @Controller
-@RequestMapping(method={RequestMethod.POST},value = "/droppie")
+@RequestMapping(method={RequestMethod.POST},value = "/dropdownButto")
 public class WriteController {
     @Autowired
     private GuideRepository guideservice;
