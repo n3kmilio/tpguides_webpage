@@ -42,7 +42,6 @@ public class DataInitializer implements CommandLineRunner {
             guide1.setAuthor("Overon");
             guide1.setTags(Arrays.asList("ADC", "Draven", "Mechanics", "Overon"));
 
-            // Beispiel 2: Briars Feet
             Guide guide2 = new Guide();
             guide2.setTitle("Briars Feet");
             guide2.setDescription("A detailed Guide about Briars Feet");
@@ -50,7 +49,6 @@ public class DataInitializer implements CommandLineRunner {
             guide2.setAuthor("lildio");
             guide2.setTags(Arrays.asList("Champion lore", "Briar", "lildio"));
 
-            // Beispiel 3: Jett Guide
             Guide guide3 = new Guide();
             guide3.setTitle("Jett Guide");
             guide3.setDescription("Complete guide to Jett in Valorant");
@@ -58,7 +56,6 @@ public class DataInitializer implements CommandLineRunner {
             guide3.setAuthor("admin");
             guide3.setTags(Arrays.asList("Agent", "Jett", "Gameplay"));
 
-            // Beispiel 4: Counter-Strike 2 Strategies
             Guide guide4 = new Guide();
             guide4.setTitle("Counter-Strike 2 Strategies");
             guide4.setDescription("Top strategies for Counter-Strike 2");
@@ -66,7 +63,6 @@ public class DataInitializer implements CommandLineRunner {
             guide4.setGame("Counter-Strike");
             guide4.setTags(Arrays.asList("Strategy", "CS2", "Tactics", "TapfereMilch"));
 
-            // Beispiel 5: Inferno Smokes
             Guide guide5 = new Guide();
             guide5.setTitle("Inferno Smokes");
             guide5.setDescription("Effective smokes in CS:GO's Inferno map");
@@ -74,7 +70,6 @@ public class DataInitializer implements CommandLineRunner {
             guide5.setAuthor("Skywalker");
             guide5.setTags(Arrays.asList("Smokes", "Inferno", "CSGO", "Skywalker"));
 
-            // Beispiel 6: Breeze Smokes
             Guide guide6 = new Guide();
             guide6.setTitle("Breeze Smokes");
             guide6.setDescription("Smokes for Breeze in Valorant");
@@ -82,8 +77,6 @@ public class DataInitializer implements CommandLineRunner {
             guide6.setAuthor("Skywalker");
             guide6.setTags(Arrays.asList("Smokes", "Breeze", "Utility"));
 
-
-            // usw....
             Guide guide7 = new Guide();
             guide7.setTitle("Mastering ADC in LoL");
             guide7.setDescription("A guide to becoming a top-tier ADC in League of Legends");
@@ -126,8 +119,6 @@ public class DataInitializer implements CommandLineRunner {
             guide12.setAuthor("Skywalker");
             guide12.setTags(Arrays.asList("Lore", "Champion", "Briar", "Gameplay"));
 
-
-            // Speichern der Guides
             guideRepository.save(guide1);
             guideRepository.save(guide2);
             guideRepository.save(guide3);
@@ -142,7 +133,6 @@ public class DataInitializer implements CommandLineRunner {
             guideRepository.save(guide12);
         }
 
-        // Rollen initialisieren
         if (roleRepository.count() == 0) {
             Role adminRole = new Role("ADMIN");
             Role modRole = new Role("MOD");
@@ -152,7 +142,6 @@ public class DataInitializer implements CommandLineRunner {
             roleRepository.save(userRole);
         }
 
-        // Benutzer initialisieren
         if (userRepository.count() == 0) {
             Role adminRole = roleRepository.findByName("ADMIN");
             Role userRole = roleRepository.findByName("USER");

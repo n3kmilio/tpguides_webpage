@@ -18,7 +18,6 @@ public class UserController {
     private UserRepository userRepository;
     private UserService userService;
 
-    // Suche Benutzer basierend auf dem Benutzernamen
     @GetMapping("/search")
     public ResponseEntity<?> searchUser(@RequestParam("username") String username) {
         Optional<User> user = userRepository.findByUsername(username);

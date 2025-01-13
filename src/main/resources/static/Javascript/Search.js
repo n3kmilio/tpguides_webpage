@@ -1,7 +1,6 @@
 let selectedTags = [];
 let guidesData = [];
 
-
 async function fetchGuides() {
     try {
         const response = await fetch('/api/guides');
@@ -91,7 +90,6 @@ function filterResults() {
         return matchesSearch && matchesTags;
     });
 
-    // Suche auch Benutzer
     fetch(`/api/users/search?username=${searchTerm}`)
         .then(response => {
             if (response.ok) return response.json();
