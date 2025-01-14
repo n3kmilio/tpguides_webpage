@@ -89,7 +89,6 @@ public class HomeController {
             model.addAttribute("isAuthenticated", false);
         }
 
-        System.out.println("Hallo ich bin da");
         Guide guide = guideRepository.getReferenceById(Integer.valueOf(id));
         String gamePath = "";
         switch (guide.getGame()) {
