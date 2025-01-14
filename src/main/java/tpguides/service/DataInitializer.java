@@ -170,7 +170,7 @@ public class DataInitializer implements CommandLineRunner {
             Role userRole = roleRepository.findByName("USER");
 
             User lildio = new User("lildio", passwordEncoder.encode("lildio666"), "emilio.gaebler@stud-th.luebeck.de", Set.of(adminRole, userRole), "Moin, ich bin Emilio");
-            User Overon = new User("Overon", passwordEncoder.encode("overon123"), "mathis.sander@stud-th.luebeck.de", Set.of(adminRole, userRole), "Hi, mein Name ist Mathis");
+            User Overon = new User("overon", passwordEncoder.encode("overon123"), "mathis.sander@stud-th.luebeck.de", Set.of(adminRole, userRole), "Hi, mein Name ist Mathis");
             User Skywalker = new User("Skywalker", passwordEncoder.encode("skywalker123"), "erik@stud-th.luebeck.de", Set.of(adminRole,userRole), "Hallo ich bin Erik :)");
             User TapfereMilch = new User("TapfereMilch", passwordEncoder.encode("tapferemilch123"), "torve.petersen@stud-th.luebeck.de", Set.of(adminRole,userRole), "Hallo, mein Name ist Torve und ich bin discord Mod :3");
             User FirstUser = new User("user",passwordEncoder.encode("user123"),"user@stud-th.luebeck.de",Set.of(userRole),"Moin, ich bin ein User.");

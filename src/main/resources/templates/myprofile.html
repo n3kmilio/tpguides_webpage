@@ -66,6 +66,9 @@
     </div>
 
     <div class="navigation-buttons d-flex align-items-center">
+        <form th:if="${isAuthenticated}" action="/write" method="get" style="display: inline;">
+            <button class="buttonslogin" type="submit">Write</button>
+        </form>
         <form  action="/logout" method="post" style="display: inline;">
             <button class="buttonslogin" type="submit">Logout</button>
         </form>

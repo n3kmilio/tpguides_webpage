@@ -9,7 +9,31 @@ document.addEventListener("DOMContentLoaded", function () {
     function selectGame(gameName, gameImage) {
         dropdownButto.textContent = gameName;
         dropdownConten.classList.remove('show');
+
     }
+
+    function getGame(){
+        const Game = dropdownButto.value;
+
+        fetch('/dropdownButto', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({selection: Game})
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Success', data);
+            })
+            .catch(error => {
+                console.log('Error', error)
+            })
+
+    }
+    document.getElementById('publish').addEventListener('click',function(){
+        getGame();
+    });
 
     document.querySelectorAll('.dropdown-item').forEach(item => {
         item.addEventListener('click', function () {
