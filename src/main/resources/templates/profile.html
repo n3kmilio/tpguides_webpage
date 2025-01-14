@@ -1,22 +1,16 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>TPGuides | My Profile</title>
-    <link rel="icon" href="../img/Logo-32x32.ico" sizes="any">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-          rel="stylesheet"
-          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
-          crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil</title>
     <link rel="stylesheet" href="../style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-
-
 <body>
 <div class="topnav d-flex justify-content-between align-items-center px-3">
     <div class="logo d-flex align-items-center">
-        <a th:href="@{}">
+        <a th:href="@{/}" style="text-decoration: none;">
             <img src="../img/Logo-487x487.png" alt="Logo" width="72.2" height="72.2">
         </a>
         <a th:href="@{/}" style="text-decoration: none;">
@@ -26,100 +20,78 @@
 
     <div class="search-bar d-flex align-items-center">
         <div class="dropdown">
-            <button type="button" class="dropdown-button" id="dropdownButton">
-                Select a Game
-            </button>
+            <button type="button" class="dropdown-button" id="dropdownButton">Select a Game</button>
             <div class="dropdown-content" id="dropdownContent">
                 <div class="dropdown-item" onclick="selectGame('League of Legends', '../img/lol.png')">
                     <img src="../img/lol.png" alt="League of Legends"> League of Legends
                 </div>
-                <div class="dropdown-item"
-                     onclick="selectGame('Valorant', '../img/Valorant_logo_-_pink_color_version_(cropped).png')">
-                    <img src="../img/Valorant_logo_-_pink_color_version_(cropped).png" alt="Valorant"> Valorant
+                <div class="dropdown-item" onclick="selectGame('Valorant', '../img/Valorant_logo.png')">
+                    <img src="../img/Valorant_logo.png" alt="Valorant"> Valorant
                 </div>
-                <div class="dropdown-item"
-                     onclick="selectGame('CounterStrike', '../img/Counter-Strike_CS_logo.svg.png')">
-                    <img src="../img/Counter-Strike_CS_logo.svg.png" alt="CounterStrike"> CounterStrike
+                <div class="dropdown-item" onclick="selectGame('CounterStrike', '../img/cs_logo.png')">
+                    <img src="../img/cs_logo.png" alt="CounterStrike"> CounterStrike
                 </div>
             </div>
         </div>
 
-        <div class="tags-feature d-flex align-items-center me-3">
-            <input type="text" id="tagInput" class="form-control" placeholder="Add tags...">
-            <div id="tagDropdown" class="dropdown-content"></div>
-            <div id="selectedTags" class="d-flex flex-wrap"></div>
-        </div>
-
         <form action="results.html" method="get" class="d-flex">
-            <input type="text" id="searchInput" class="search-input" placeholder="Search guides..."
-                   onkeyup="filterResults()"/>
+            <input type="text" id="searchInput" class="search-input" placeholder="Search guides...">
         </form>
     </div>
 
-    <div class="navigation-buttons d-flex align-items-center">
-        <form action="/my-profile" method="post" style="display: inline;">
-            <button class="buttonslogin" type="submit">MyProfile</button>
+    <div class="navigation-buttons">
+        <form action="/logout" method="post">
+            <button class="buttonslogin" type="submit">Logout</button>
         </form>
     </div>
 </div>
 
 <div class="container-fluid">
     <div class="row">
+        <!-- Sidebar -->
         <div class="col-2" style="background-color: #208a77; min-height: 100vh;">
-            <div style="position: relative; top:70%;">
-                <p class="p1">Only Visible for Mods: </p>
-                <button class="buttons"
-                        style="display: block; margin-left: auto; margin-right: auto; background-color: #72a244"> Manage
-                    User
-                </button>
-
+            <div style="position: relative; top: 70%;">
+                <p class="p1">Only Visible for Mods:</p>
+                <button class="buttons" style="background-color: #72a244;">Manage User</button>
             </div>
         </div>
 
+        <!-- Main Profile Section -->
         <div class="col-8">
             <img src="../img/Profile.png" alt="profile" height="250" width="250" class="center" style="padding:20px">
-            <p class="p1" th:text="${username}">Profile Name</p>
-            <br>
-            <br>
-            <br>
-
-            <p class="p2" th:text="${description}">
-            </p>
-
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-
-            <div class="guide-container">
-                <h4> Guides:</h4>
-                <ul>
-                    <h3 th:each="guide : ${Guides}">
-                        <a th:href="@{/guide.html(title=${guide.title})}" th:text="${guide.title}"></a>
-                    </h3>
-                </ul>
+            <div class="profile-header text-center">
+                <h1 th:text="${usernameDisplay}">Benutzername</h1>
+                <p id="profileDescription" class="profile-description"></p>
             </div>
 
+            <div class="profile-content">
+                <h2 class="section-title">Guides von  <span th:text="${usernameDisplay}" ></span>: </h2>
+                <div class="guide-container">
+                    <h4> Deine Guides:</h4>
+                    <ul>
+                        <h3 th:each="guide : ${guides}">
+                            <a th:href="@{/guide.html(title=${guide.title},id =${guide.id})}" th:text="${guide.title}"></a>
+                        </h3>
+                    </ul>
+                </div>
+            </div>
         </div>
 
+        <!-- Ranking and Playing Info -->
         <div class="col-2" style="background-color: #208a77; min-height: 100vh;">
-            <h1 style="color: white; padding: 30px;">Playing: </h1>
+            <h1 style="color: white; padding: 30px;">Playing:</h1>
             <img src="../img/lol.png" height="150" width="150" class="center" alt="lol">
-            <br><br><br>
             <h1 style="color: white;">Ranking:</h1>
             <img src="../img/rank.png" height="150" width="150" class="center" alt="rank">
-
-            <div style="position: absolute; bottom:1px; margin-left: auto; margin-right: auto; ">
-                <br>
-            </div>
         </div>
     </div>
 </div>
 
+
+
 <script src="../Javascript/dropdown.js" defer></script>
 <script src="../Javascript/Search.js" defer></script>
 <script src="../Javascript/Tags.js" defer></script>
+
 </body>
 </html>

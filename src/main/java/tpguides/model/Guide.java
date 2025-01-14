@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Guide {
@@ -17,6 +18,7 @@ public class Guide {
     private String author;
     private String content;
     private String game;
+    //protected Set<Comment> comments;
 
     @ElementCollection
     private List<String> tags = new ArrayList<>();
@@ -24,6 +26,10 @@ public class Guide {
     public String getGame() {
         return game;
     }
+
+    //public Set<Comment> getComment() {return comments;}
+
+    //public void setComment(Set<Comment> comment) { this.comments = comment;}
 
     public void setGame(String game) {
         this.game = game;

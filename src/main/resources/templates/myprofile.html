@@ -66,6 +66,9 @@
     </div>
 
     <div class="navigation-buttons d-flex align-items-center">
+        <form th:if="${isAuthenticated}" action="/write" method="get" style="display: inline;">
+            <button class="buttonslogin" type="submit">Write</button>
+        </form>
         <form  action="/logout" method="post" style="display: inline;">
             <button class="buttonslogin" type="submit">Logout</button>
         </form>
@@ -213,7 +216,7 @@
                 <h4> Deine Guides:</h4>
                 <ul>
                     <h3 th:each="guide : ${Guides}">
-                        <a th:href="@{/guide.html(title=${guide.title})}" th:text="${guide.title}"></a>
+                        <a th:href="@{/guide.html(title=${guide.title}, id =${guide.id})}" th:text="${guide.title}"></a>
                     </h3>
                 </ul>
             </div>

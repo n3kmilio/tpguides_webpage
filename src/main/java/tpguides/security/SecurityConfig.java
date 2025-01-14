@@ -43,6 +43,7 @@ public class SecurityConfig {
                             "/api/**",
                             "/login",
                             "/logout",
+                            "/profile",
                             "/check-authentication"
                     ).permitAll();
 
@@ -56,9 +57,9 @@ public class SecurityConfig {
                 .logout(logout -> logout
                         .logoutUrl("/logout")
                         .logoutSuccessUrl("/")
-                        .invalidateHttpSession(true)// Löscht die Sitzung
+                        .invalidateHttpSession(true)
                         .clearAuthentication(true)
-                        .permitAll()// Löscht die Authentifizierung
+                        .permitAll()
                 )
 
 
@@ -70,7 +71,7 @@ public class SecurityConfig {
                                 "/api/guides/**",
                                 "/",
                                 "/guide/**",
-                                "/logout"// Falls POST/PUT/DELETE genutzt werden
+                                "/logout"
                         )
 
                 )

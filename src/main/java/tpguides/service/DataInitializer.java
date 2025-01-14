@@ -33,7 +33,7 @@ public class DataInitializer implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-
+        String loremIpsum = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam e";
         if (guideRepository.count() == 0) {
             Guide guide1 = new Guide();
             guide1.setTitle("Draven Tutorial");
@@ -41,48 +41,63 @@ public class DataInitializer implements CommandLineRunner {
             guide1.setGame("League of Legends");
             guide1.setAuthor("Overon");
             guide1.setTags(Arrays.asList("ADC", "Draven", "Mechanics", "Overon"));
+            guide1.setContent(loremIpsum);
 
+
+            // Beispiel 2: Briars Feet
             Guide guide2 = new Guide();
             guide2.setTitle("Briars Feet");
             guide2.setDescription("A detailed Guide about Briars Feet");
             guide2.setGame("League of Legends");
             guide2.setAuthor("lildio");
             guide2.setTags(Arrays.asList("Champion lore", "Briar", "lildio"));
+            guide2.setContent("Ich liebe die Füße von Briar <3");
 
+            // Beispiel 3: Jett Guide
             Guide guide3 = new Guide();
             guide3.setTitle("Jett Guide");
             guide3.setDescription("Complete guide to Jett in Valorant");
-            guide3.setGame("TapfereMilch");
-            guide3.setAuthor("admin");
+            guide3.setGame("Valorant");
+            guide3.setAuthor("TapfereMilch");
             guide3.setTags(Arrays.asList("Agent", "Jett", "Gameplay"));
+            guide3.setContent(loremIpsum);
 
+            // Beispiel 4: Counter-Strike 2 Strategies
             Guide guide4 = new Guide();
             guide4.setTitle("Counter-Strike 2 Strategies");
             guide4.setDescription("Top strategies for Counter-Strike 2");
             guide4.setAuthor("TapfereMilch");
             guide4.setGame("Counter-Strike");
             guide4.setTags(Arrays.asList("Strategy", "CS2", "Tactics", "TapfereMilch"));
+            guide4.setContent(loremIpsum);
 
+            // Beispiel 5: Inferno Smokes
             Guide guide5 = new Guide();
             guide5.setTitle("Inferno Smokes");
             guide5.setDescription("Effective smokes in CS:GO's Inferno map");
             guide5.setGame("Counter-Strike");
             guide5.setAuthor("Skywalker");
             guide5.setTags(Arrays.asList("Smokes", "Inferno", "CSGO", "Skywalker"));
+            guide5.setContent(loremIpsum);
 
+            // Beispiel 6: Breeze Smokes
             Guide guide6 = new Guide();
             guide6.setTitle("Breeze Smokes");
             guide6.setDescription("Smokes for Breeze in Valorant");
             guide6.setGame("Valorant");
             guide6.setAuthor("Skywalker");
             guide6.setTags(Arrays.asList("Smokes", "Breeze", "Utility"));
+            guide6.setContent(loremIpsum);
 
+
+            // usw....
             Guide guide7 = new Guide();
             guide7.setTitle("Mastering ADC in LoL");
             guide7.setDescription("A guide to becoming a top-tier ADC in League of Legends");
             guide7.setGame("League of Legends");
             guide7.setAuthor("Overon");
             guide7.setTags(Arrays.asList("ADC", "Positioning", "Mechanics", "League"));
+            guide7.setContent(loremIpsum);
 
             Guide guide8 = new Guide();
             guide8.setTitle("Valorant Agent Guide: Phoenix");
@@ -90,6 +105,7 @@ public class DataInitializer implements CommandLineRunner {
             guide8.setGame("Valorant");
             guide8.setAuthor("Overon");
             guide8.setTags(Arrays.asList("Phoenix", "Agent", "Valorant", "Gameplay"));
+            guide8.setContent(loremIpsum);
 
             Guide guide9 = new Guide();
             guide9.setTitle("CS:GO Tactics: Dust 2");
@@ -97,6 +113,7 @@ public class DataInitializer implements CommandLineRunner {
             guide9.setGame("Counter-Strike");
             guide9.setAuthor("Overon");
             guide9.setTags(Arrays.asList("Tactics", "Dust 2", "CSGO", "Strategy"));
+            guide9.setContent(loremIpsum);
 
             Guide guide10 = new Guide();
             guide10.setTitle("Jett Smokes and Utility");
@@ -104,6 +121,7 @@ public class DataInitializer implements CommandLineRunner {
             guide10.setGame("Valorant");
             guide10.setAuthor("TapfereMilch");
             guide10.setTags(Arrays.asList("Jett", "Utility", "Smokes", "Valorant"));
+            guide10.setContent(loremIpsum);
 
             Guide guide11 = new Guide();
             guide11.setTitle("CS2: Advanced Smokes");
@@ -111,6 +129,7 @@ public class DataInitializer implements CommandLineRunner {
             guide11.setGame("Counter-Strike");
             guide11.setAuthor("TapfereMilch");
             guide11.setTags(Arrays.asList("Smokes", "Advanced", "Strategy", "CS2"));
+            guide11.setContent(loremIpsum);
 
             Guide guide12 = new Guide();
             guide12.setTitle("Briar Lore and Gameplay");
@@ -118,7 +137,9 @@ public class DataInitializer implements CommandLineRunner {
             guide12.setGame("League of Legends");
             guide12.setAuthor("Skywalker");
             guide12.setTags(Arrays.asList("Lore", "Champion", "Briar", "Gameplay"));
+            guide12.setContent(loremIpsum);
 
+            // Speichern der Guides
             guideRepository.save(guide1);
             guideRepository.save(guide2);
             guideRepository.save(guide3);
@@ -133,6 +154,7 @@ public class DataInitializer implements CommandLineRunner {
             guideRepository.save(guide12);
         }
 
+        // Rollen initialisieren
         if (roleRepository.count() == 0) {
             Role adminRole = new Role("ADMIN");
             Role modRole = new Role("MOD");
@@ -142,6 +164,7 @@ public class DataInitializer implements CommandLineRunner {
             roleRepository.save(userRole);
         }
 
+        // Benutzer initialisieren
         if (userRepository.count() == 0) {
             Role adminRole = roleRepository.findByName("ADMIN");
             Role userRole = roleRepository.findByName("USER");
