@@ -109,7 +109,7 @@ function filterResults() {
         filteredGuides.forEach(guide => {
             const guideElement = document.createElement('div');
             guideElement.classList.add('search-item');
-            guideElement.innerHTML = `<a href="guide.html?title=${guide.title}"><h4>${guide.title}</h4><p>${guide.description}</p></a>`;
+            guideElement.innerHTML = `<a href="guide.html?title=${guide.title}&id=${guide.id}"><h4>${guide.title}</h4><p>${guide.description}</p></a>`;
             searchResultsContainer.appendChild(guideElement);
         });
 

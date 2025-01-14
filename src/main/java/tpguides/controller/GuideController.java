@@ -26,13 +26,6 @@ public class GuideController {
         return guideRepository.findAll();
     }
 
-    @GetMapping("/guide/{id}")
-    public String getGuide(@PathVariable Integer id, Model model) {
-        Guide guide = guideRepository.findById(id).orElseThrow(() -> new RuntimeException("Guide not found"));
-        model.addAttribute("guide", guide);
-        return "guide"; // render guide.html
-    }
-
     @GetMapping("/search")
     public List<Guide> searchGuides(@RequestParam(required = false) String searchTerm) {
         if (searchTerm != null && !searchTerm.isEmpty()) {
