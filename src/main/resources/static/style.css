@@ -222,7 +222,7 @@ h3{
     margin-right: 10px;
 }
 
-dropdown {
+.dropdown {
     position: relative;
     display: inline-block;
 }
