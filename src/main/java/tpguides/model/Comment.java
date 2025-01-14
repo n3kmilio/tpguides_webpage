@@ -10,19 +10,21 @@ public class Comment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     private String comment;
     private String User;
     private String Guide;
 
-    public int getId() { return id; }
+    public Long getId() { return id; }
 
     public String getComment() { return comment;}
 
     public String getUser() { return User;}
 
     public String getGuide() { return Guide;}
+
+    public void setId(Long id) {this.id = id;}
 
     public void setComment(String comment) { this.comment = comment;}
 
