@@ -25,3 +25,10 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 });
+
+document.addEventListener('click', function (event) {
+    const searchDropdown = document.getElementById('searchDropdown');
+    if (!event.target.closest('form')) {
+        searchDropdown.style.display = 'none';
+    }
+});

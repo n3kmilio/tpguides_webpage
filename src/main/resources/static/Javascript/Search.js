@@ -127,3 +127,54 @@ document.addEventListener('DOMContentLoaded', () => {
 document.getElementById('searchInput').addEventListener('input', (event) => {
     searchGuides(event.target.value);
 });
+
+
+function filterResultsDropdown() {
+
+    const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+    const searchDropdown = document.getElementById('searchDropdown');
+
+    searchDropdown.innerHTML = '';
+
+    const filteredGuides = guidesData.filter(guide => {
+        const matchesSearch = guide.title.toLowerCase().includes(searchTerm) || guide.description.toLowerCase().includes(searchTerm);
+        const matchesTags = selectedTags.every(tag => guide.tags.some(guideTag => guideTag.toLowerCase().includes(tag.toLowerCase())));
+        return matchesSearch && matchesTags;
+    });
+
+    if (filteredGuides.length > 0) {
+        searchDropdown.style.display = 'block';
+
+        filteredGuides.forEach(guide => {
+            const guideElement = document.createElement('div');
+            guideElement.classList.add('dropdown-item');
+            guideElement.innerHTML = `<a href="guide.html?title=${encodeURIComponent(guide.title)}">${guide.title}</a>`;
+
+            guideElement.addEventListener('click', function () {
+                document.getElementById('searchInput').value = guide.title;
+                searchDropdown.style.display = 'none';
+            });
+
+            searchDropdown.appendChild(guideElement);
+        });
+    } else {
+        searchDropdown.style.display = 'none';
+    }
+
+}
+
+function getResultsOnInput(event) {
+    if (event) event.preventDefault();
+    const inputInDoc = document.getElementById("searchInput").value;
+    if (!inputInDoc) {
+        localStorage.setItem('inputSave', inputInDoc)
+        window.location.href = 'index.html';
+    }
+}
+
+function loadInput() {
+    if (localStorage.getItem('inputSave')) {
+        document.getElementById('searchInput').value = localStorage.getItem('inputSave');
+        filterResults();
+    }
+}

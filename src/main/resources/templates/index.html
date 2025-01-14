@@ -57,11 +57,10 @@
             <div id="selectedTags" class="d-flex flex-wrap"></div>
         </div>
 
-        <form th:action="@{/results}" method="get" class="d-flex">
-            <form th:action="@{/results}" method="get" class="d-flex">
-                <input type="text" id="searchInput" class="search-input" placeholder="Search guides..."
-                       onkeyup="filterResults()">
-            </form>
+        <form th:action="@{/}" method="get" class="d-flex">
+            <input type="text" id="searchInput" class="search-input" placeholder="Search guides..."
+                   onkeyup="filterResults()">
+
         </form>
     </div>
 
