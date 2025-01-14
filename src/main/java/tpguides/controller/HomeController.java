@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import tpguides.model.Guide;
 import tpguides.repository.GuideRepository;
 import tpguides.repository.UserRepository;
-import tpguides.service.CustomUserDetailsService;
 
 import java.util.List;
 import java.util.Optional;
@@ -68,9 +67,6 @@ public class HomeController {
         return "myprofile";
     }
 
-
-
-
     @GetMapping("/guide/{id}")
     public String guideDetails(@PathVariable Integer id, Model model) {
         Optional<Guide> guideOptional = guideRepository.findById(id);
@@ -94,11 +90,11 @@ public class HomeController {
         if (guides.isEmpty()) {
             model.addAttribute("errorMessage", "No guides found for this author.");
         } else {
-            model.addAttribute("guides", guides); // Liste der Guides
+            model.addAttribute("guides", guides);
         }
 
-        model.addAttribute("author", author); // Autor anzeigen
-        return "authorGuides"; // Zeigt die entsprechende View an
+        model.addAttribute("author", author);
+        return "authorGuides";
     }
 
 
