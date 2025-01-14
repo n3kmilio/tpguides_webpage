@@ -61,6 +61,11 @@
                    onkeyup="filterResults()"/>
         </form>
     </div>
+    <div class="navigation-buttons d-flex align-items-center">
+        <form action="/myprofile" method="get" style="display: inline;">
+            <button class="buttonslogin" type="submit">My Profile</button>
+        </form>
+    </div>
 </div>
 <div class="container-fluid">
     <div class="row">
@@ -113,7 +118,6 @@
                 </form>
             </div>
         </div>
-    </div>
 
         <div class="col-2" style="background-color: #208a77; min-height: 100vh;">
             <a th:href="@{/}">
