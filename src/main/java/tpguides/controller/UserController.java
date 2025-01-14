@@ -3,13 +3,16 @@ package tpguides.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+import tpguides.model.Guide;
 import tpguides.model.User;
+import tpguides.repository.GuideRepository;
 import tpguides.repository.UserRepository;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -27,5 +30,17 @@ public class UserController {
             return ResponseEntity.ok(user.get());
         }
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Benutzer nicht gefunden");
+    }
+
+    @GetMapping("/{username}")
+    public ResponseEntity<?> getUserByUsername(@PathVariable String username) {
+
+        Optional<User> user = userRepository.findByUsername(username);
+
+        if (user.isPresent()) {
+            return ResponseEntity.ok(user.get());
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Benutzer nicht gefunden");
+        }
     }
 }

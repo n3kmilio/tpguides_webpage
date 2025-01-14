@@ -43,6 +43,7 @@ public class SecurityConfig {
                             "/api/**",
                             "/login",
                             "/logout",
+                            "/profile",
                             "/check-authentication"
                     ).permitAll();
 

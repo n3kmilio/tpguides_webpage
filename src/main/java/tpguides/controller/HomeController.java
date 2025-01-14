@@ -12,17 +12,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 import tpguides.model.Guide;
 import tpguides.repository.GuideRepository;
 import tpguides.repository.UserRepository;
-import tpguides.service.CustomUserDetailsService;
 
 import java.util.List;
 import java.util.Optional;
 
 @Controller
 public class HomeController {
-    @Autowired
-    UserRepository userRepository;
-    @Autowired
-    GuideRepository guideRepository;
+     @Autowired
+     UserRepository userRepository;
+     @Autowired
+     GuideRepository guideRepository;
 
     @GetMapping("/")
     public String home(Model model) {
@@ -66,6 +65,18 @@ public class HomeController {
         }
 
         return "myprofile";
+    }
+
+
+    @GetMapping("/profile.html")
+    public String profile(Model model,@RequestParam("username") String username) {
+        Optional<tpguides.model.User> user = userRepository.findByUsername(username);
+        List<Guide> guides = guideRepository.findByAuthor(user.get().getUsername());
+
+        model.addAttribute("usernameDisplay", user.get().getUsername());
+        model.addAttribute("guides", guides);
+
+        return "profile";
     }
 
     @GetMapping("/guide.html")
@@ -112,12 +123,14 @@ public class HomeController {
         if (guides.isEmpty()) {
             model.addAttribute("errorMessage", "No guides found for this author.");
         } else {
-            model.addAttribute("guides", guides); // Liste der Guides
+            model.addAttribute("guides", guides);
         }
 
-        model.addAttribute("author", author); // Autor anzeigen
-        return "authorGuides"; // Zeigt die entsprechende View an
+        model.addAttribute("author", author);
+        return "authorGuides";
     }
+
+
 
     @GetMapping("/results")
     public String results() {
