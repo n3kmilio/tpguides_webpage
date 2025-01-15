@@ -30,7 +30,7 @@ public class UserController {
         if (user.isPresent()) {
             return ResponseEntity.ok(user.get());
         }
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Benutzer nicht gefunden");
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Benutzer nicht gefunden (searchUser)");
     }
 
     @GetMapping("/{username}")
@@ -41,7 +41,7 @@ public class UserController {
         if (user.isPresent()) {
             return ResponseEntity.ok(user.get());
         } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Benutzer nicht gefunden");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Benutzer nicht gefunden (getUser)");
         }
     }
 
@@ -55,7 +55,7 @@ public class UserController {
 
             return ResponseEntity.ok(user.get());
         } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Benutzer nicht gefunden");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Benutzer nicht gefunden (updateUser)");
         }
     }
 }
