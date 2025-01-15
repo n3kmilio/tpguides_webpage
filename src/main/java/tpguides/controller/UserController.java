@@ -46,10 +46,11 @@ public class UserController {
     }
 
     @PostMapping("/myprofile")
-    public ResponseEntity<?> updateDescription(@RequestParam("username") String username, @RequestParam("description") String description) {
+    public ResponseEntity<?> updateUser(@RequestParam("username") String username, @RequestParam("description") String description) {
         Optional<User> user = userRepository.findByUsername(username);
         if (user.isPresent()) {
             user.get().setDescription(description);
+            user.get().setUsername(username);
             userRepository.save(user.get());
 
             return ResponseEntity.ok(user.get());
