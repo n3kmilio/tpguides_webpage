@@ -36,7 +36,8 @@
                 Select a Game
             </button>
             <div class="dropdown-content" id="dropdownContent">
-                <div class="dropdown-item" onclick="selectGame('League of Legends', '../img/lol.png')">
+                <div class="dropdown-item"
+                     onclick="selectGame('League of Legends', '../img/lol.png')">
                     <img src="../img/lol.png" alt="League of Legends"> League of Legends
                 </div>
                 <div class="dropdown-item"
@@ -74,7 +75,12 @@
         <div class="col-2" style="background-color: #208a77; min-height: 100vh;"></div>
         <div class="col-8 d-flex justify-content-center align-items-center" style="height: 110vh;">
             <div class>
-                <form method="POST">
+                <div class="tags-feature d-flex align-items-center me-3">
+                    <input type="text" id="tagInpu" class="form-control" placeholder="Add tags...">
+                    <div id="tagDropdow" class="dropdown-content"></div>
+                    <div id="selectedTag" class="d-flex flex-wrap"></div>
+                </div>
+                    <form id="droppie">
                     <div class="dropdown">
                         <button type="button" class="dropdown-button" id="dropdownButto" name="dropdownButto">
                             Select a Game
@@ -94,7 +100,10 @@
                             </div>
                         </div>
                     </div>
+                    </form>
 
+
+                <form method="POST">
                     <label for="title-input"
                            style="font-size: 33px; margin-top: 40px; text-align: center; display: block;">Enter the
                         Title:</label>
