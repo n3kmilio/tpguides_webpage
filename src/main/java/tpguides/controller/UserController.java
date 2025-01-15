@@ -3,6 +3,7 @@ package tpguides.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import tpguides.model.Guide;
@@ -38,6 +39,19 @@ public class UserController {
         Optional<User> user = userRepository.findByUsername(username);
 
         if (user.isPresent()) {
+            return ResponseEntity.ok(user.get());
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Benutzer nicht gefunden");
+        }
+    }
+
+    @PostMapping("/myprofile")
+    public ResponseEntity<?> updateDescription(@RequestParam("username") String username, @RequestParam("description") String description) {
+        Optional<User> user = userRepository.findByUsername(username);
+        if (user.isPresent()) {
+            user.get().setDescription(description);
+            userRepository.save(user.get());
+
             return ResponseEntity.ok(user.get());
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Benutzer nicht gefunden");

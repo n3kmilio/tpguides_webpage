@@ -12,6 +12,7 @@ editButton.addEventListener("click", () => {
 });
 
 saveButton.addEventListener("click", () => {
+    document.getElementById('descriptionForm').submit();
     paragraph.textContent = textarea.value;
     paragraph.classList.remove("hidden");
     textarea.classList.add("hidden");
