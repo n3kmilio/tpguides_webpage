@@ -44,6 +44,7 @@ public class DataInitializer implements CommandLineRunner {
             guide1.setContent(loremIpsum);
 
 
+
             // Beispiel 2: Briars Feet
             Guide guide2 = new Guide();
             guide2.setTitle("Briars Feet");

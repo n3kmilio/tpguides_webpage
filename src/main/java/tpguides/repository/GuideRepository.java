@@ -7,6 +7,7 @@ import tpguides.model.Guide;
 import java.util.List;
 import java.util.Optional;
 
+
 @Repository
 public interface GuideRepository extends JpaRepository<Guide, Integer> {
     List<Guide> findByTitleContainingOrDescriptionContaining(String title, String description);

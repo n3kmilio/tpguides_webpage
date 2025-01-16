@@ -13,6 +13,7 @@ public class Guide {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+
     private String title;
     private String description;
     private String author;
