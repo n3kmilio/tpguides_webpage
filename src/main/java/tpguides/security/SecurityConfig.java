@@ -80,5 +80,6 @@ public class SecurityConfig {
 
                 .headers(headers -> headers.frameOptions().sameOrigin()) // Erlaube das Einbetten der Konsole in Iframes
                 .build();
+
     }
 }

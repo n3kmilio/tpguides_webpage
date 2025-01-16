@@ -18,6 +18,7 @@ public class TpguidesApplication implements CommandLineRunner {
 	@Autowired
 	private UserRepository userRepository;
 
+
 	@Autowired
 	private RoleRepository roleRepository;
 

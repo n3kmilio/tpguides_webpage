@@ -14,6 +14,7 @@ public class GuideService {
     @Autowired
     private GuideRepository guideRepository;
 
+
     public List<Guide> searchGuides(String searchTerm, List<String> tags) {
         List<Guide> guides = guideRepository.findAll();
 

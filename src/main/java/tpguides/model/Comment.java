@@ -2,6 +2,7 @@ package tpguides.model;
 
 import jakarta.persistence.*;
 
+
 @Entity
 public class Comment {
 
