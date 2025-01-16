@@ -34,8 +34,9 @@
             </div>
         </div>
 
-        <form action="results.html" method="get" class="d-flex">
-            <input type="text" id="searchInput" class="search-input" placeholder="Search guides...">
+        <form method="get" class="d-flex">
+            <input type="text" id="searchInput" class="search-input" placeholder="Search guides..." onkeyup="filterResultsDropdown()"/> <!-- Dynamische Suche -->
+            <div id="searchDropdown" class="dropdown-content"></div>
         </form>
     </div>
 

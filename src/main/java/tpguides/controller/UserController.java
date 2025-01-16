@@ -3,6 +3,7 @@ package tpguides.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import tpguides.model.Guide;
@@ -29,7 +30,7 @@ public class UserController {
         if (user.isPresent()) {
             return ResponseEntity.ok(user.get());
         }
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Benutzer nicht gefunden");
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Benutzer nicht gefunden (searchUser)");
     }
 
     @GetMapping("/{username}")
@@ -40,7 +41,21 @@ public class UserController {
         if (user.isPresent()) {
             return ResponseEntity.ok(user.get());
         } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Benutzer nicht gefunden");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Benutzer nicht gefunden (getUser)");
+        }
+    }
+
+    @PostMapping("/myprofile")
+    public ResponseEntity<?> updateUser(@RequestParam("username") String username, @RequestParam("description") String description) {
+        Optional<User> user = userRepository.findByUsername(username);
+        if (user.isPresent()) {
+            user.get().setDescription(description);
+            user.get().setUsername(username);
+            userRepository.save(user.get());
+
+            return ResponseEntity.ok(user.get());
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Benutzer nicht gefunden (updateUser)");
         }
     }
 }

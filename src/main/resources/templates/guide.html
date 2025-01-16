@@ -22,10 +22,10 @@
 
 <div class="topnav d-flex justify-content-between align-items-center px-3">
     <div class="logo d-flex align-items-center">
-        <a th:href="@{/}">
+        <a href="index.html">
             <img src="../img/Logo-487x487.png" alt="Logo" width="72.2" height="72.2">
         </a>
-        <a th:href="@{/}" style="text-decoration: none;">
+        <a href="index.html" style="text-decoration: none;">
             <img src="../img/Logo-Schrifft.png" alt="LogoSchrift" width="274.6" height="67.5">
         </a>
     </div>
@@ -34,7 +34,7 @@
         <div class="dropdown">
             <button type="button" class="dropdown-button" id="dropdownButton">
                 <!-- Dynamischer Spielname -->
-                Select a Game
+                {{selectedGameName}}
             </button>
             <div class="dropdown-content" id="dropdownContent">
                 <div class="dropdown-item" onclick="selectGame('League of Legends', '../img/lol.png')">
@@ -51,18 +51,16 @@
             </div>
         </div>
 
-        <form action="results.html" method="get" class="d-flex">
-            <input type="text" id="searchInput" class="search-input" placeholder="Search guides..."
-                   /> <!-- Dynamische Suche -->
+        <form method="get" class="d-flex">
+            <input type="text" id="searchInput" class="search-input" placeholder="Search guides..." onkeyup="filterResultsDropdown()" />  <!-- Dynamische Suche -->
+            <div id="searchDropdown" class="dropdown-item"></div>
         </form>
     </div>
 
     <div class="navigation-buttons d-flex align-items-center">
-        <form th:if="${!isAuthenticated}" action="/login" method="get" style="display: inline;">
-            <button class="buttonslogin" type="submit">Login</button>
-        </form>
-        <form th:if="${isAuthenticated}" action="/myprofile" method="get" style="display: inline;">
-            <button class="buttonslogin" type="submit">MyProfile</button>
+        <!-- Dynamischer Login-Button -->
+        <form action="{{loginAction}}" method="get" style="display: inline;">
+            <button class="buttonslogin" type="submit">{{loginButtonText}}</button>
         </form>
     </div>
 </div>
@@ -76,7 +74,7 @@
                 <img src="{{profilePicture}}" class="center" alt="Profile Picture" width="100" height="100">
             </a>
             <a href="myprofile.html" style="text-decoration: none;color: white">
-                <h3 th:text="${author}">{{profileName}}</h3>
+                <h3>{{profileName}}</h3>
             </a>
 
             <br>
@@ -88,17 +86,21 @@
             <!-- Dynamischer Guide -->
             <div class="guide-container">
                 <div class="game-info">
-                    <img th:src="${gamePath}" alt="Game Logo" width="50" height="50">
+                    <img src="{{gameIcon}}" alt="Game Logo" width="50" height="50">
                 </div>
 
                 <div class="guide-content">
-                    <h3><span th:text="${title}"></span>  </h3>
-                    <p><strong>Description:</strong> <span th:text="${description}">Default Description</span></p>
-                    <h4>Guide Content: </h4>
-                    <p ><span th:text="${content}"></span></p>
+                    <h3>{{guideTitle}}</h3>
+                    <p><strong>Description:</strong> {{guideDescription}}</p>
+                    <h4>Guide Content:</h4>
+                    <p>{{guideContent}}</p>
+                    <ul>
+                        <!-- Dynamische Schritte im Guide -->
+                        {{#each guideSteps}}
+                        <li>{{this}}</li>
+                        {{/each}}
+                    </ul>
                 </div>
-
-
 
                 <div class="comment-section mt-5">
                     <h4>Comments</h4>
@@ -150,7 +152,7 @@
 </script>
 
 <script src="../Javascript/dropdown.js" defer></script>
-<script src="../Javascript/Search.js" defer></script>
+<script src="../Javascript/SearchDropdown.js" defer></script>
 <script src="../Javascript/Tags.js" defer></script>
 
 </body>

@@ -18,7 +18,15 @@ public class Guide {
     private String author;
     private String content;
     private String game;
-    //protected Set<Comment> comments;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "guide_comments",
+            joinColumns = @JoinColumn(name = "guide_id"),
+            inverseJoinColumns = @JoinColumn(name = "comment_id")
+    )
+    private Set<Comment> comments;
+
 
     @ElementCollection
     private List<String> tags = new ArrayList<>();
@@ -27,9 +35,9 @@ public class Guide {
         return game;
     }
 
-    //public Set<Comment> getComment() {return comments;}
+    public Set<Comment> getComment() {return comments;}
 
-    //public void setComment(Set<Comment> comment) { this.comments = comment;}
+    public void setComment(Set<Comment> comment) { this.comments = comment;}
 
     public void setGame(String game) {
         this.game = game;
