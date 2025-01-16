@@ -91,7 +91,6 @@ function filterResults() {
         return matchesSearch && matchesTags;
     });
 
-    // Suche auch Benutzer
     fetch(`/api/users/search?username=${searchTerm}`)
         .then(response => {
             if (response.ok) return response.json();
@@ -127,3 +126,13 @@ document.addEventListener('DOMContentLoaded', () => {
 document.getElementById('searchInput').addEventListener('input', (event) => {
     searchGuides(event.target.value);
 });
+
+
+
+
+function loadInput() {
+    if (localStorage.getItem('inputSave')) {
+        document.getElementById('searchInput').value = localStorage.getItem('inputSave');
+        filterResults();
+    }
+}
