@@ -112,7 +112,7 @@ function filterResults() {
         });
 
         searchOverlay.style.display = 'flex';
-    } else {ko
+    } else {
         searchOverlay.style.display = 'none';
     }
 
