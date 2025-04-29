@@ -55,9 +55,9 @@
             <div id="selectedTags" class="d-flex flex-wrap"></div>
         </div>
 
-        <form th:action="@{/results}" method="get" class="d-flex">
-            <input type="text" id="searchInput" class="search-input" placeholder="Search guides..."
-                   onkeyup="filterResults()"/>
+        <form method="get" class="d-flex">
+            <input type="text" id="searchInput" class="search-input" placeholder="Search guides..." onkeyup="filterResultsDropdown()"/> <!-- Dynamische Suche -->
+            <div id="searchDropdown" class="dropdown-content"></div>
         </form>
     </div>
 
@@ -93,6 +93,7 @@
                         <button id="loginForm" type="submit">Login</button>
                     </div>
 
+
                 </form>
                 <p class="p2 mt-3">
                     No Account? <a th:href="@{/register}" style="text-decoration: underline;">Register Here</a>
@@ -107,6 +108,7 @@
 </div>
 
 <script src="../Javascript/dropdown.js" defer></script>
+<script src="../Javascript/Search.js" defer></script>
 <script src="../Javascript/Tags.js" defer></script>
 
 </body>

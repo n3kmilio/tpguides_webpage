@@ -125,3 +125,13 @@ document.addEventListener('DOMContentLoaded', () => {
 document.getElementById('searchInput').addEventListener('input', (event) => {
     searchGuides(event.target.value);
 });
+
+
+
+
+function loadInput() {
+    if (localStorage.getItem('inputSave')) {
+        document.getElementById('searchInput').value = localStorage.getItem('inputSave');
+        filterResults();
+    }
+}

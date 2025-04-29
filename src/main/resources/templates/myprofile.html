@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="de">
+<html lang="de" xmlns="">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,6 +10,13 @@
           integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
           crossorigin="anonymous">
     <link rel="stylesheet" href="../style.css">
+
+    <style>
+        .hidden {
+            display: none;
+        }
+    </style>
+
 </head>
 
 <body>
@@ -57,9 +64,9 @@
             <div id="selectedTags" class="d-flex flex-wrap"></div>
         </div>
 
-        <form action="results.html" method="get" class="d-flex">
-            <input type="text" id="searchInput" class="search-input" placeholder="Search guides..."
-                   onkeyup="filterResults()"/>
+        <form method="get" class="d-flex">
+            <input type="text" id="searchInput" class="search-input" placeholder="Search guides..." onkeyup="filterResultsDropdown()"/> <!-- Dynamische Suche -->
+            <div id="searchDropdown" class="dropdown-content"></div>
         </form>
 
 
@@ -88,6 +95,7 @@
             "Multiplayer",
             "Singleplayer"
         ];
+
 
         const selectedTagsContainer = document.getElementById("selectedTags");
         const tagInput = document.getElementById("tagInput");
@@ -188,7 +196,7 @@
             <div style="position: relative; top:70%;">
                 <p class="p1">Only Visible for Mods: </p>
                 <button class="buttons"
-                        style="display: block; margin-left: auto; margin-right: auto; background-color: #72a244"> Manage
+                        style="background-color: #72a244;display: block; margin-left: auto; margin-right: auto;"> Manage
                     User
                 </button>
 
@@ -197,14 +205,19 @@
 
         <div class="col-8">
             <img src="../img/Profile.png" alt="profile" height="250" width="250" class="center" style="padding:20px">
-            <p class="p1" th:text="${username}">Profile Name</p>
+            <p id="usernameDisplay" class="p1" th:text="${username}">Profile Name</p>
             <br>
             <br>
             <br>
 
-            <p class="p2" th:text="${description}">
+            <p id="editableText" class="p2" th:text="${description}">
             </p>
 
+            <form id="descriptionForm" method="post" action="/api/users/myprofile">
+                <input id="usernameEditor" class="hidden" name="username">
+                <textarea id="textEditor" class="p2 hidden" name="description" style="width: 300px; height: 100px; margin-bottom: 10px;align-self: center; padding: 10px"></textarea>
+                <button id="saveButton" class="button hidden" style="background-color: #72a244; margin-left: auto; margin-right: auto;">Save</button>
+            </form>
             <br>
             <br>
             <br>
@@ -242,7 +255,7 @@
                 </a>
                 <br>
 
-                <button class="buttons"
+                <button class="buttons" id="editButton"
                         style="background-color: #72a244;display: block; margin-left: auto; margin-right: auto;">Edit
                 </button>
 
@@ -262,5 +275,6 @@
 <script src="../Javascript/dropdown.js" defer></script>
 <script src="../Javascript/Search.js" defer></script>
 <script src="../Javascript/Tags.js" defer></script>
+<script src="../Javascript/editUser.js"></script>
 </body>
 </html>

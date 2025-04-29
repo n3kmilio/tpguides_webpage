@@ -71,13 +71,15 @@ public class SecurityConfig {
                                 "/api/guides/**",
                                 "/",
                                 "/guide/**",
-                                "/logout"
+                                "/logout",
+                                "/api/users/updateDescription",
+                                "/api/users/{username}"
                         )
 
                 )
 
-
                 .headers(headers -> headers.frameOptions().sameOrigin()) // Erlaube das Einbetten der Konsole in Iframes
                 .build();
+
     }
 }

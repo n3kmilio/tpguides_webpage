@@ -1,9 +1,7 @@
 package tpguides.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
 
 @Entity
 public class Comment {
@@ -15,6 +13,10 @@ public class Comment {
     private String comment;
     private String User;
     private String Guide;
+
+    public Comment() {}
+
+    public Comment(String comment, String User, String Guide) { this.comment = comment; this.User = User; this.Guide = Guide; }
 
     public Long getId() { return id; }
 
